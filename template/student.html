@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/css/student.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../script/script.js"></script>
+    <link rel="icon" href="../style/images/logo.png" type="image/icon type">
+    <title>Öğrenci</title>
+</head>
+
+<body>
+    <div class="row d-flex flex-row" style="width: 100%;" id="first-row">
+        <div class="col3 d-flex align-items-center justify-content-center">
+            <img src="../style/images/logo2.png" alt="logo" id="logo">
+        </div>
+        <div class="col-9">
+            <div class="col-9 d-flex align-items-center justify-content-center">
+                <label id="title">Öğrenci Bilgi Sistemi</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3" style="width: 100%;">
+        <div class="col-2 d-flex flex-column" id="buttons">
+            <button class="process-button" onclick="lecturesOfStudentsActive()">Derslerim <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
+            <button class="process-button" onclick="lectureApprovementStudentActive()">Ders Seçim Ekranı <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
+        </div>
+        <div class="col-10" id="lecture-of-student">
+            <div class="container mt-3" id="lecture-of-student-table">
+                <div class="row">
+                    <div class="col-12">
+                        <table>
+                            <tr class="attributes">
+                                <th>Ders Kodu</th>
+                                <th>Bölüm Kodu</th>
+                                <th>Asistan</th>
+                                <th>Kredi</th>
+                                <th>Kontenjan</th>
+                                <th>Ders Saatleri</th>
+                            </tr>
+                            <tr>
+                                <td class="data">Alfreds Futterkiste</td>
+                                <td class="data">Maria Anders</td>
+                                <td class="data">Germany</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Centro comercial Moctezuma</td>
+                                <td class="data">Francisco Chang</td>
+                                <td class="data">Mexico</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Ernst Handel</td>
+                                <td class="data">Roland Mendel</td>
+                                <td class="data">Austria</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Island Trading</td>
+                                <td class="data">Helen Bennett</td>
+                                <td class="data">UK</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Laughing Bacchus Winecellars</td>
+                                <td class="data">Yoshi Tannamuri</td>
+                                <td class="data">Canada</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Magazzini Alimentari Riuniti</td>
+                                <td class="data">Giovanni Rovelli</td>
+                                <td class="data">Italy</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-10 mt-3" id="lecture-approvement-student">
+            <div class="container mt-3" id="lecture-approvement-s-table">
+                <div class="row">
+                    <div class="col-12">
+                        <table>
+                            <tr class="attributes">
+                                <th>Ders Kodu</th>
+                                <th>Bölüm Kodu</th>
+                                <th>Asistan</th>
+                                <th>Kredi</th>
+                                <th>Kontenjan</th>
+                                <th>Ders Saatleri</th>
+                                <th>Seçme Durumu</th>
+                            </tr>
+                            <tr>
+                                <td class="data">Alfreds Futterkiste</td>
+                                <td class="data">Maria Anders</td>
+                                <td class="data">Germany</td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="data">Centro comercial Moctezuma</td>
+                                <td class="data">Francisco Chang</td>
+                                <td class="data">Mexico</td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="data">Ernst Handel</td>
+                                <td class="data">Roland Mendel</td>
+                                <td class="data">Austria</td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="data">Island Trading</td>
+                                <td class="data">Helen Bennett</td>
+                                <td class="data">UK</td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="data">Laughing Bacchus Winecellars</td>
+                                <td class="data">Yoshi Tannamuri</td>
+                                <td class="data">Canada</td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="data">Magazzini Alimentari Riuniti</td>
+                                <td class="data">Giovanni Rovelli</td>
+                                <td class="data">Italy</td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-12 mt-3 text-right">
+                        <input type="button" id="approvement-button-s" value="Onayla" onclick="sendStudentsChoseLectures()" class="btn btn-success">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row d-flex align-items-center justify-content-center text-right" style="width: 100%; margin-top: 2rem;">
+        <div class="col-12" id="exit-row">
+            <a href="./login.html">
+                <input type="button" value="Çıkış" id="exit-button">
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

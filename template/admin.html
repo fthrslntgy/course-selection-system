@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../script/script.js"></script>
+    <link rel="icon" href="../style/images/logo.png" type="image/icon type">
+    <title>Sistem Yöneticisi</title>
+</head>
+
+<body>
+    <div class="row d-flex flex-row" style="width: 100%;" id="first-row">
+        <div class="col3 d-flex align-items-center justify-content-center">
+            <img src="../style/images/logo2.png" alt="logo" id="logo">
+        </div>
+        <div class="col-9">
+            <div class="col-9 d-flex align-items-center justify-content-center">
+                <label id="title">Bilgi Yönetim Sistemi</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3" style="width: 100%;">
+        <div class="col-2 d-flex flex-column" id="buttons">
+            <button class="process-button" onclick="academicianTableActive()">Akademisyenler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
+            <button class="process-button" onclick="studentTableActive()">Öğrenciler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
+            <button class="process-button" onclick="lectureTableActive()">Dersler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
+        </div>
+        <div class="col-10 mt-3" id="admin-academician">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <table>
+                            <tr class="attributes">
+                                <th>Kullanıcı Adı</th>
+                                <th>İsim</th>
+                                <th>2. İsim</th>
+                                <th>Soyisim</th>
+                                <th>Bölüm</th>
+                                <th>Sınıf</th>
+                                <th>Yaş</th>
+                                <th>Telefon Numarası</th>
+                            </tr>
+                            <tr>
+                                <td class="data">Alfreds Futterkiste</td>
+                                <td class="data">Maria Anders</td>
+                                <td class="data">Germany</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Centro comercial Moctezuma</td>
+                                <td class="data">Francisco Chang</td>
+                                <td class="data">Mexico</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Ernst Handel</td>
+                                <td class="data">Roland Mendel</td>
+                                <td class="data">Austria</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Island Trading</td>
+                                <td class="data">Helen Bennett</td>
+                                <td class="data">UK</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Laughing Bacchus Winecellars</td>
+                                <td class="data">Yoshi Tannamuri</td>
+                                <td class="data">Canada</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Magazzini Alimentari Riuniti</td>
+                                <td class="data">Giovanni Rovelli</td>
+                                <td class="data">Italy</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end text-right mt-3">
+                        <button id="create-button" onclick="addAcademician()">Akademisyen Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-10 mt-3" id="admin-student">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <table>
+                            <tr class="attributes">
+                                <th>Kullanıcı Adı</th>
+                                <th>İsim</th>
+                                <th>2. İsim</th>
+                                <th>Soyisim</th>
+                                <th>Öğrenci Numarası</th>
+                                <th>Bölüm</th>
+                                <th>Sınıf</th>
+                                <th>Yaş</th>
+                                <th>Telefon Numarası</th>
+                            </tr>
+                            <tr>
+                                <td class="data">Alfreds Futterkiste</td>
+                                <td class="data">Maria Anders</td>
+                                <td class="data">Germany</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Centro comercial Moctezuma</td>
+                                <td class="data">Francisco Chang</td>
+                                <td class="data">Mexico</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Ernst Handel</td>
+                                <td class="data">Roland Mendel</td>
+                                <td class="data">Austria</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Island Trading</td>
+                                <td class="data">Helen Bennett</td>
+                                <td class="data">UK</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Laughing Bacchus Winecellars</td>
+                                <td class="data">Yoshi Tannamuri</td>
+                                <td class="data">Canada</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Magazzini Alimentari Riuniti</td>
+                                <td class="data">Giovanni Rovelli</td>
+                                <td class="data">Italy</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end text-right mt-3">
+                        <button id="create-button" onclick="addStudent()">Öğrenci Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-10 mt-3" id="admin-lecture">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <table>
+                            <tr class="attributes">
+                                <th>Ders Kodu</th>
+                                <th>Bölüm Kodu</th>
+                                <th>Akademisyen</th>
+                                <th>Asistan</th>
+                                <th>Kredi</th>
+                                <th>Kontenjan</th>
+                                <th>Ders Saatleri</th>
+                            </tr>
+                            <tr>
+                                <td class="data">Alfreds Futterkiste</td>
+                                <td class="data">Maria Anders</td>
+                                <td class="data">Germany</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Centro comercial Moctezuma</td>
+                                <td class="data">Francisco Chang</td>
+                                <td class="data">Mexico</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Ernst Handel</td>
+                                <td class="data">Roland Mendel</td>
+                                <td class="data">Austria</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Island Trading</td>
+                                <td class="data">Helen Bennett</td>
+                                <td class="data">UK</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Laughing Bacchus Winecellars</td>
+                                <td class="data">Yoshi Tannamuri</td>
+                                <td class="data">Canada</td>
+                            </tr>
+                            <tr>
+                                <td class="data">Magazzini Alimentari Riuniti</td>
+                                <td class="data">Giovanni Rovelli</td>
+                                <td class="data">Italy</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end text-right mt-3">
+                        <button id="create-button" onclick="addLecture()">Ders Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="create-form" id="add-academician-form">
+            <form action="" id="academician-inputs">
+                <div class="container-fluid">
+                    <div class="row d-flex align-items-center justify-content-center mt-4 ml-2">
+                        <div class="col-12">
+                            <h2 class="form-title">Akademisyen Ekle</h2>
+                        </div>
+                        <div class="col-4 mt-3 form-input">
+                            <input type="text" placeholder="Kullanıcı Adı">
+                        </div>
+                        <div class="col-4 mt-3 form-input">
+                            <input type="text" placeholder="Şifre">
+                        </div>
+                        <div class="col-4 mt-3 form-input">
+                            <input type="text" placeholder="İsim">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="2. İsim">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Soyisim">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Bölüm">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Sınıf">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Yaş">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Telefon Numarası">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Grup">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Doğum Tarihi">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Adres">
+                        </div>
+                        <div class="col-12 mt-5 text-right">
+                            <input type="button" onclick="closePopUp(0)" value="Çıkış" class="btn btn-danger">
+                            <input type="button" onclick="sendUserData(0)" value="Kaydet" class="btn btn-success ml-3">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="create-form" id="add-student-form">
+            <form action="" id="student-inputs">
+                <div class="container-fluid">
+                    <div class="row d-flex mt-4 ml-2">
+                        <div class="col-12">
+                            <h2 class="form-title">Öğrenci Ekle</h2>
+                        </div>
+                        <div class="col-4 mt-3 form-input">
+                            <input type="text" placeholder="Kullanıcı Adı">
+                        </div>
+                        <div class="col-4 mt-3 form-input">
+                            <input type="text" placeholder="Şifre">
+                        </div>
+                        <div class="col-4 mt-3 form-input">
+                            <input type="text" placeholder="İsim">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="2. İsim">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Soyisim">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Bölüm">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Öğrenci Numarası">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Sınıf">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Yaş">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Eğitim Programı">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Telefon Numarası">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Grup">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Doğum Tarihi">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Adres">
+                        </div>
+                        <div class="col-12 mt-5 text-right">
+                            <input type="button" onclick="closePopUp(1)" value="Çıkış" class="btn btn-danger">
+                            <input type="button" onclick="sendUserData(1)" value="Kaydet" class="btn btn-success ml-3">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="create-form" id="add-lecture-form">
+            <form action="" id="lecture-inputs">
+                <div class="container-fluid">
+                    <div class="row mt-4 ml-2">
+                        <div class="col-12">
+                            <h2 class="form-title">Ders Ekle</h2>
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="İsim">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Bölüm">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Ders Kodu">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Credit">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Akademisyen">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Asistan">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Ders Saatleri">
+                        </div>
+                        <div class="col-4 form-input">
+                            <input type="text" placeholder="Kontenjan">
+                        </div>
+                        <div class="col-12 mt-5 text-right">
+                            <input type="button" onclick="closePopUp(2)" value="Çıkış" class="btn btn-danger">
+                            <input type="button" onclick="sendUserData(2)" value="Kaydet" class="btn btn-success ml-3">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row d-flex align-items-center justify-content-center text-right" style="width: 100%; margin-top: 3rem;">
+        <div class="col-12" id="exit-row">
+            <a href="./academician.html">
+                <input type="button" value="Çıkış" id="exit-button">
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

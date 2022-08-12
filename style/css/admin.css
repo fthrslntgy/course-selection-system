@@ -1,0 +1,193 @@
+body {
+    background: linear-gradient(to right, #E0EAFC, #CFDEF3);
+    margin: 0;
+    height: 100%;
+    padding-left: 3rem;
+    padding-top: 1.5rem;
+}
+
+#logo {
+    width: 300px;
+    height: auto;
+}
+
+#title {
+    font-size: 45px;
+    font-family: Merriweather;
+    font-weight: 600;
+    color: #1c449c;
+    margin-left: 2rem;
+}
+
+#exit-button {
+    background-color: red;
+    color: white;
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    text-align: center;
+}
+
+#exit-button:hover {
+    background-color: white;
+    color: red;
+    outline: none;
+    border: 2px solid red;
+    transition: all 1s;
+}
+
+#exit-button:not(hover) {
+    background-color: red;
+    color: white;
+    outline: none;
+    transition: all 1s;
+}
+
+#choose-label {
+    font-family: Figtree;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.process-button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    margin-top: 1rem;
+    font-family: Figtree;
+    font-size: 24px;
+    font-weight: 500;
+    width: 100%;
+    height: 120px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+}
+
+.process-button:hover {
+    color: #1c449c;
+}
+
+.process-button:focus {
+    outline: none;
+    color: white;
+    background-color: #1c449c;
+    transition: all 1s;
+}
+
+.attributes {
+    font-size: 18px;
+    font-weight: 800;
+    font-family: Merriweather;
+    color: rgb(178, 32, 40);
+}
+
+.data {
+    font-size: 17px;
+    font-family: Figtree;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: rgb(255, 252, 248);
+    border-radius: 5px;
+}
+
+th,
+td {
+    border-right: 1px solid black;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-bottom: 1px solid black;
+}
+
+th:last-child,
+td:last-child {
+    border-right: none;
+}
+
+#create-button {
+    background-color: rgb(33, 136, 56);
+    color: white;
+    width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}
+
+#create-button:hover {
+    background-color: white;
+    color: rgb(33, 136, 56);
+    outline: none;
+    border: 2px solid rgb(33, 136, 56);
+    transition: all 1s;
+}
+
+#create-button:not(hover) {
+    background-color: rgb(33, 136, 56);
+    color: white;
+    outline: none;
+    transition: all 1s;
+}
+
+#admin-academician {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: none;
+}
+
+#admin-student {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: none;
+}
+
+#admin-lecture {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: none;
+}
+
+.create-form {
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 200px;
+    background-color: white;
+    border-radius: 10px;
+    width: 1100px;
+    height: 550px;
+    z-index: 9;
+}
+
+input {
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+input::placeholder {
+    font-family: Figtree;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(9, 9, 248);
+    color: black;
+}
+
+.form-input {
+    padding: 20px;
+}

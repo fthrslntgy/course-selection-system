@@ -1,0 +1,78 @@
+body {
+    background: linear-gradient(to right, #E0EAFC, #CFDEF3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#logo {
+    width: auto;
+    height: auto;
+}
+
+#title {
+    font-size: 45px;
+    font-family: Merriweather;
+    font-weight: 600;
+    color: #1c449c;
+}
+
+.input-label {
+    font-family: Figtree;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+input {
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(9, 9, 248);
+    color: rgb(9, 9, 248);
+}
+
+#login-button {
+    background-color: rgb(9, 9, 248);
+    color: white;
+    width: 150px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}
+
+#login-button:hover {
+    background-color: white;
+    color: rgb(9, 9, 248);
+    outline: none;
+    border: 2px solid rgb(9, 9, 248);
+    transition: all 1s;
+}
+
+#login-button:not(hover) {
+    background-color: rgb(9, 9, 248);
+    color: white;
+    outline: none;
+    transition: all 1s;
+}
