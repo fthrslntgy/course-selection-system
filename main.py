@@ -146,6 +146,8 @@ def Login():
     if(request.method == "POST"):
         Username = request.form.get("username")
         Password = request.form.get("password")
+        print(Username)
+        print(Password)
         user = db.session.query(User.Username).filter(User.Username==Username).first()  
         if user is not None:
             db_pass = db.session.query(User.Password).filter(User.Username==Username).first()
