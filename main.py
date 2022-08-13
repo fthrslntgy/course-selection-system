@@ -136,6 +136,11 @@ class Student_Lectures(db.Model):
         self.SL_LectureCode = SL_LectureCode
         self.Approved = Approved
 
+@app.route('/')  
+def Login():    
+    if(request.method == "GET"):
+        return render_template('login.html')  
+
 if __name__ == '__main__':
     db.create_all()
     app.run()
