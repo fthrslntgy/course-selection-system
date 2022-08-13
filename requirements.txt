@@ -1,4 +1,4 @@
 flask
-sqlalchemy
-flask_sqlalchemy
+#sqlalchemy
+#flask_sqlalchemy
 psycopg2-binary 
