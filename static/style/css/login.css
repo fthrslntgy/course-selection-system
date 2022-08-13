@@ -60,6 +60,7 @@ input:focus {
     border-radius: 10px;
     outline: none;
     border: none;
+    text-align: center;
 }
 
 #login-button:hover {
