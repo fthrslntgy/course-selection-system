@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, flash
+from sqlalchemy.dialects.postgresql import UUID
 from flask_sqlalchemy import SQLAlchemy
+import uuid
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:fatih1@localhost/dss'
@@ -37,15 +39,14 @@ class Notification(db.Model):
 
     __tablename__ = 'Notification'
     N_Username = db.Column(db.String(10), primary_key=True, nullable=False)
-    NotificationID = db.Column(db.Integer, primary_key=True, unique=True, nullable=False)
+    NotificationID = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     Date = db.Column(db.DateTime, nullable=False)
     Title = db.Column(db.String(20), nullable=False)
     Message = db.Column(db.String(200), nullable=False)
     Receipts = db.Column(db.Boolean, nullable=False)
 
-    def __init__(self, N_Username, NotificationID, Date, Title, Message, Receipts):
+    def __init__(self, N_Username, Date, Title, Message, Receipts):
         self.N_Username = N_Username
-        self.NotificationID = NotificationID
         self.Date = Date       
         self.Title = Title       
         self.Message = Message
@@ -102,6 +103,38 @@ class Student(db.Model):
         self.StudentNumber = StudentNumber
         self.S_Degree = S_Degree
         self.Grade = Grade
+
+class Lecture(db.Model):
+
+    __tablename__ = 'Lecture'
+    LectureCode = db.Column(db.Integer, primary_key=True, nullable=False)
+    L_DepCode = db.Column(db.String(3), primary_key=True, nullable=False)
+    Lecturer = db.Column(db.String(10), nullable=False)
+    Assistant = db.Column(db.String(10), unique=True, nullable=True)
+    Credit = db.Column(db.Integer, nullable=False)
+    Quota = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, LectureCode, L_DepCode, Lecturer, Assistant, Credit, Quota):
+        self.LectureCode = LectureCode
+        self.L_DepCode = L_DepCode
+        self.Lecturer = Lecturer
+        self.Assistant = Assistant
+        self.Credit = Credit
+        self.Quota = Quota
+
+class Student_Lectures(db.Model):
+
+    __tablename__ = 'Student_Lectures'
+    SL_Username = db.Column(db.String(10), primary_key=True, nullable=False)
+    SL_Depcode = db.Column(db.String(3), primary_key=True, nullable=False)
+    SL_LectureCode = db.Column(db.Integer, primary_key=True, nullable=False)
+    Approved = db.Column(db.String(10), nullable=False)
+
+    def __init__(self, SL_Username, SL_Depcode, SL_LectureCode, Approved):
+        self.SL_Username = SL_Username
+        self.SL_Depcode = SL_Depcode
+        self.SL_LectureCode = SL_LectureCode
+        self.Approved = Approved
 
 if __name__ == '__main__':
     db.create_all()

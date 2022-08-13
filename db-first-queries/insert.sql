@@ -44,3 +44,5 @@ INSERT INTO "STUDENT_LECTURES" VALUES ('enebioglu', 'BİL', 461, 'approved');
 INSERT INTO "STUDENT_LECTURES" VALUES ('bdemirok', 'BİL', 113, 'waiting');
 INSERT INTO "STUDENT_LECTURES" VALUES ('sgumusbuga', 'ELE', 211, 'approved');
 INSERT INTO "STUDENT_LECTURES" VALUES ('ssomuncu', 'ELE', 101, 'waiting');
+
+INSERT INTO "NOTIFICATION" (N_Username, "Date", Title, "Message", Receipts) VALUES ('ftugay', '2022-10-10', 'Baslik', 'Sana mesaj var', FALSE)

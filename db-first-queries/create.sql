@@ -13,9 +13,11 @@ CREATE TABLE "USER" (
     PRIMARY KEY (Username)
 );
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+SELECT uuid_generate_v4();
 CREATE TABLE "NOTIFICATION" (
 	N_Username varchar(10) NOT NULL,
-	NotificationID int NOT NULL UNIQUE,
+	NotificationID uuid DEFAULT uuid_generate_v4 () NOT NULL UNIQUE,
 	"Date" timestamp NOT NULL,
 	Title varchar(20) NOT NULL,
 	"Message" varchar(200) NOT NULL,
