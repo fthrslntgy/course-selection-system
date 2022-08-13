@@ -11,7 +11,7 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
 
-    __tablename__ = 'User'
+    __tablename__ = 'USER'
     Username = db.Column(db.String(10), primary_key=True, nullable=False)
     Password = db.Column(db.String(10), nullable=False)
     Fname = db.Column(db.String(15), nullable=False)
@@ -37,7 +37,7 @@ class User(db.Model):
 
 class Notification(db.Model):
 
-    __tablename__ = 'Notification'
+    __tablename__ = 'NOTIFICATION'
     N_Username = db.Column(db.String(10), primary_key=True, nullable=False)
     NotificationID = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     Date = db.Column(db.DateTime, nullable=False)
@@ -54,7 +54,7 @@ class Notification(db.Model):
 
 class Admin(db.Model):
 
-    __tablename__ = 'Admin'
+    __tablename__ = 'ADMIN'
     AD_Username = db.Column(db.String(10), primary_key=True, nullable=False)
     AccessLevel = db.Column(db.Integer, nullable=False)
 
@@ -64,7 +64,7 @@ class Admin(db.Model):
 
 class Department(db.Model):
 
-    __tablename__ = 'Department'
+    __tablename__ = 'DEPARTMENT'
     Depcode = db.Column(db.String(3), primary_key=True, nullable=False)
     Head = db.Column(db.String(10), unique=True, nullable=False)
     CreditLimit = db.Column(db.Integer, nullable=False)
@@ -76,7 +76,7 @@ class Department(db.Model):
 
 class Academician(db.Model):
 
-    __tablename__ = 'Academician'
+    __tablename__ = 'ACADEMICIAN'
     A_Username = db.Column(db.String(10), primary_key=True, nullable=False)
     A_DepCode = db.Column(db.String(3), nullable=False)
     A_Degree = db.Column(db.String(10), nullable=False)
@@ -88,7 +88,7 @@ class Academician(db.Model):
 
 class Student(db.Model):
 
-    __tablename__ = 'Student'
+    __tablename__ = 'STUDENT'
     S_Username = db.Column(db.String(10), primary_key=True, nullable=False)
     S_DepCode = db.Column(db.String(3), nullable=False)
     Advicer = db.Column(db.String(10), nullable=False)
@@ -106,7 +106,7 @@ class Student(db.Model):
 
 class Lecture(db.Model):
 
-    __tablename__ = 'Lecture'
+    __tablename__ = 'LECTURE'
     LectureCode = db.Column(db.Integer, primary_key=True, nullable=False)
     L_DepCode = db.Column(db.String(3), primary_key=True, nullable=False)
     Lecturer = db.Column(db.String(10), nullable=False)
@@ -124,7 +124,7 @@ class Lecture(db.Model):
 
 class Student_Lectures(db.Model):
 
-    __tablename__ = 'Student_Lectures'
+    __tablename__ = 'STUDENT_LECTURES'
     SL_Username = db.Column(db.String(10), primary_key=True, nullable=False)
     SL_Depcode = db.Column(db.String(3), primary_key=True, nullable=False)
     SL_LectureCode = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -140,6 +140,21 @@ class Student_Lectures(db.Model):
 def home():    
     if(request.method == "GET"):
         return render_template('login.html')  
+
+@app.route('/Login', methods=['GET', 'POST'])  
+def Login():        
+    if(request.method == "POST"):
+        Username = request.form.get("username")
+        Password = request.form.get("password")
+        user = db.session.query(User.Username).filter(User.Username==Username).first()  
+        if user is not None:
+            db_pass = db.session.query(User.Password).filter(User.Username==Username).first()
+            db_pass = str(db_pass)           
+            if db_pass == Password:                     
+                return render_template('login.html', message="Hoşgeldiniz " + str(Username))    
+            else:               
+                return render_template('login.html', message="Hatalı şifre!")               
+        return render_template('login.html', message="Hatalı kullanıcı adı!")    
 
 if __name__ == '__main__':
     app.run()
