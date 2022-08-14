@@ -13,13 +13,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="../script/login.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='style/script/login.js') }}"></script>
     <link rel="icon" href="{{ url_for('static', filename='style/images/logo.png') }}" type="image/icon type">
     <title>Giriş Yapınız</title>
 </head>
 
 <body>
-    <form action="./Login" method="post">
+    <form action="./Login" method="post" id="login-form">
         <div class="container">
             <div class="card">
                 <div class="row">
@@ -37,16 +37,16 @@
                             <input type="password" class="input-label" placeholder="Şifre" id="password" name="password">
                         </div>
                         <div class="col-12 mt-5 text-right">
-                            <input class="btn" value="Giriş" type="submit" id="login-button" onclick="inputCheck()" />
+                            <input class="btn" value="Giriş" id="login-button" onclick="inputCheck()" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-    <div id="message">
+    <div style="display: none;">
         {% if message %}
-        <p>{{ message | safe }}</p>
+        <p id="message">{{ message | safe }}</p>
         {% endif %}
     </div>
 </body>

@@ -3,7 +3,7 @@ import psycopg2
 
 app = Flask(__name__)
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='fatih1')
+    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='Mert_201')
     return conn
 active_username = ""
 
@@ -24,14 +24,14 @@ def Login():
         cur.close()
         conn.close()
         if len(query) == 0:
-            return render_template('login.html', message=1)    
+            return render_template('login.html', message="Hatalı kullanıcı adı!")    
         else: 
             db_passwd = query[0][0]
-            if db_passwd == password:
-                return render_template('login.html', message=2)
+            if db_passwd != password:
+                return render_template('login.html', message="Hatalı şifre!")
             else:
                 active_username = username
-                return render_template('login.html', message=0)    
+                return render_template('login.html', message="Başarılı!")    
 
 if __name__ == '__main__':
     app.run()

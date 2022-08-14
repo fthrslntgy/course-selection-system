@@ -20,6 +20,11 @@
 </head>
 
 <body>
+    <div>
+        {% if username %}
+        <p id="message">Hoşgeldiniz {{ username | safe }}</p>
+        {% endif %}
+    </div>
     <div class="row d-flex flex-row" style="width: 100%;" id="first-row">
         <div class="col3 d-flex align-items-center justify-content-center">
             <img src="../style/images/logo2.png" alt="logo" id="logo">
