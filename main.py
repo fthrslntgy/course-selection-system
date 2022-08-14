@@ -94,6 +94,17 @@ def get_unread_notifications():
         conn.close()
         return jsonify({'htmlresponse': render_template('response.html', notifications=query)})
 
+@app.route("/get_all_depcodes",methods=["POST","GET"])
+def get_all_depcodes():
+    if request.method == 'GET':
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute('SELECT DepCode FROM "DEPARTMENT";')
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify({'htmlresponse': render_template('response.html', limit=query)})
+
 @app.route("/get_credit_limit_by_depcode",methods=["POST","GET"])
 def get_credit_limit_by_depcode():
     if request.method == 'POST':
