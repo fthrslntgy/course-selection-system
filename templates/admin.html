@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../style/css/admin.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/css/admin.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
@@ -14,8 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../script/script.js"></script>
-    <link rel="icon" href="../style/images/logo.png" type="image/icon type">
+    <script type="text/javascript" src="{{ url_for('static', filename='style/script/script.js') }}"></script>
+    <link rel="icon" href="{{ url_for('static', filename='style/images/logo.png') }}" type="image/icon type">
     <title>Sistem Yöneticisi</title>
 </head>
 
@@ -27,7 +27,7 @@
     </div>
     <div class="row d-flex flex-row" style="width: 100%;" id="first-row">
         <div class="col3 d-flex align-items-center justify-content-center">
-            <img src="../style/images/logo2.png" alt="logo" id="logo">
+            <img src="{{ url_for('static', filename='style/images/logo2.png') }}" alt="logo" id="logo">
         </div>
         <div class="col-9">
             <div class="col-9 d-flex align-items-center justify-content-center">

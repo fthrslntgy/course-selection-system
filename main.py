@@ -3,9 +3,10 @@ import psycopg2
 
 app = Flask(__name__)
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='Mert_201')
+    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='fatih1')
     return conn
 active_username = ""
+active_group = ""
 
 @app.route('/')  
 def home():    
@@ -31,7 +32,20 @@ def Login():
                 return render_template('login.html', message="Hatalı şifre!")
             else:
                 active_username = username
-                return render_template('login.html', message="Başarılı!")    
+                conn = get_db_connection()
+                cur = conn.cursor()
+                cur.execute('SELECT GroupType FROM "USER" WHERE username=\'' + username + '\';')
+                query = cur.fetchall()
+                cur.close()
+                conn.close()
+                group = query[0][0]
+                active_group = group
+                if(active_group == "admin"):
+                    return render_template('admin.html', username=active_username)
+                elif(active_group == "academician"):
+                    return render_template('academician.html', username=active_username) 
+                else:
+                    return render_template('student.html', username=active_username)  
 
 if __name__ == '__main__':
     app.run()
