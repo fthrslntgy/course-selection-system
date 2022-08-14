@@ -16,10 +16,24 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <script type="text/javascript" src="{{ url_for('static', filename='style/script/script.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='style/script/admin.js') }}"></script>
     <link rel="icon" href="{{ url_for('static', filename='style/images/logo.png') }}" type="image/icon type">
     <title>Sistem Yöneticisi</title>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#create-button').on(click, function() {
+                $.get("/get_all_depcodes", function(response) {
+                    $('#dep-codes').html(response);
+                    $('#dep-codes').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
+    </script>
 </head>
+
+
+
 
 <body>
 
@@ -209,7 +223,9 @@
                         </table>
                     </div>
                     <div class="col-12 d-flex justify-content-end text-right mt-3">
-                        <button id="create-button" onclick="addLecture()">Ders Ekle</button>
+                        <form action="./get_all_depcodes" method="get">
+                            <button class="btn" type="submit" id="create-button" onclick="addLecture()">Ders Ekle</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -333,7 +349,7 @@
                             <input type="text" placeholder="İsim">
                         </div>
                         <div class="col-4 form-input">
-                            <input type="text" placeholder="Bölüm">
+                            <div id="dep-codes"></div>
                         </div>
                         <div class="col-4 form-input">
                             <input type="text" placeholder="Ders Kodu">
@@ -342,7 +358,7 @@
                             <input type="text" placeholder="Credit">
                         </div>
                         <div class="col-4 form-input">
-                            <input type="text" placeholder="Akademisyen">
+                            <div id="academician-of-depts"></div>
                         </div>
                         <div class="col-4 form-input">
                             <input type="text" placeholder="Asistan">

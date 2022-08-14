@@ -3,7 +3,7 @@ import psycopg2
 
 app = Flask(__name__)
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='fatih1')
+    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='Mert_201')
     return conn
 global active_username
 global active_group
@@ -103,7 +103,8 @@ def get_all_depcodes():
         query = cur.fetchall()
         cur.close()
         conn.close()
-        return jsonify({'htmlresponse': render_template('response.html', limit=query)})
+        print(query)
+        return jsonify({'htmlresponse': render_template('depcodes.html', depcodes=query)})
 
 @app.route("/get_credit_limit_by_depcode",methods=["POST","GET"])
 def get_credit_limit_by_depcode():
