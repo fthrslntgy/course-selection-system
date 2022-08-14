@@ -1,0 +1,52 @@
+body {
+    background: linear-gradient(to right, #E0EAFC, #CFDEF3);
+    margin: 0;
+    height: 100%;
+    padding-left: 3rem;
+    padding-top: 1.5rem;
+}
+
+#logo {
+    width: 300px;
+    height: auto;
+}
+
+#title {
+    font-size: 45px;
+    font-family: Merriweather;
+    font-weight: 600;
+    color: #1c449c;
+    margin-left: -10rem;
+}
+
+.bilgiler-label {
+    font-size: 30px;
+    font-family: Figtree;
+    color: #1c449c;
+}
+
+input {
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+input::placeholder {
+    font-family: Figtree;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(9, 9, 248);
+    color: black;
+}
+
+.form-input {
+    padding: 20px;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+}

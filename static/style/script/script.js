@@ -59,7 +59,6 @@ function approvementFormActive() {
 
 function saveAssistantApprovement() {
     //asistanı ata
-    alert("Atadık baabbba");
 }
 
 //STUDENT

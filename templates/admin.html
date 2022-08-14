@@ -135,23 +135,25 @@
 
 <body>
     <div class="row d-flex flex-row" style="width: 100%;" id="first-row">
-        <div class="col3 d-flex align-items-center justify-content-center">
+        <div class="col-3 d-flex align-items-center justify-content-center">
             <img src="{{ url_for('static', filename='style/images/logo2.png') }}" alt="logo" id="logo">
         </div>
         <div class="col-8 d-flex align-items-center justify-content-center">
             <label id="title">Bilgi Yönetim Sistemi</label>
         </div>
-        <div class="col-1 ml-5 d-flex align-items-center justify-content-center">
+        <div class="col-1 d-flex align-items-center justify-content-center">
             <button class="nav-but">
                 <span class="material-symbols-outlined" class="navbar-buttons">
                     notifications
                 </span>
             </button>
-            <button class="nav-but">
-                <span class="material-symbols-outlined" class="navbar-buttons">
-                    settings
-                </span>
-            </button>
+            <form action="./Settings" method="get" id="settings-admin-form">
+                <button class="nav-but" value="settings-button-admin" id="settings-button-admin" type="submit">
+                    <span class="material-symbols-outlined" class="navbar-buttons">
+                        settings
+                    </span>
+                </button>
+            </form>
         </div>
     </div>
 

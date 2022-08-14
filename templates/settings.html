@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/css/settings.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='style/images/logo.png') }}" type="image/icon type">
+    <title>Ayarlar</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row d-flex flex-row" style="width: 100%;" id="first-row">
+            <div class="col-3 d-flex align-items-center justify-content-center">
+                <img src="{{ url_for('static', filename='style/images/logo2.png') }}" alt="logo" id="logo">
+            </div>
+            <div class="col-8 d-flex align-items-center justify-content-center">
+                <label id="title">Ayarlar</label>
+            </div>
+        </div>
+
+        <form action="/SaveSettings" method="post" id="settings-form">
+            <div class="container mt-5" style="background-color: white; border-radius:10px">
+                <div class="row mt-3">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <label class="bilgiler-label">Bilgiler</label>
+                    </div>
+                    <div class="col-4 mt-3 d-flex align-items-center justify-content-start form-input">
+                        <input type="text" placeholder="İsim" id="fname" name="fname">
+                    </div>
+                    <div class="col-4 mt-3 d-flex align-items-center justify-content-start form-input">
+                        <input type="text" placeholder="2. İsim" id="minit" name="minit">
+                    </div>
+                    <div class="col-4 mt-3 d-flex align-items-center justify-content-start form-input">
+                        <input type="text" placeholder="Soyisim" id="lname" name="lname">
+                    </div>
+                    <div class="col-4 mt-3 d-flex align-items-center justify-content-start form-input">
+                        <input type="date" placeholder="Doğum Tarihi" id="birthdate" name="birthdate">
+                    </div>
+                    <div class="col-4 mt-3 d-flex align-items-center justify-content-start form-input">
+                        <input type="text" placeholder="Adres" id="address" name="address">
+                    </div>
+                    <div class="col-4 mt-3 d-flex align-items-center justify-content-start form-input">
+                        <input type="text" placeholder="Telefon Numarası" id="phonenumber" name="phonenumber">
+                    </div>
+                    <div class="col-12 d-flex align-items-center justify-content-end mt-3 mb-3">
+                        <button type="submit" value="settings-save-button" id="settings-save-button" class="btn btn-success">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form action="/ExitSettings" method="get" id="exit-settings-form">
+            <div class="row mt-5">
+                <div class="col-12 d-flex align-items-center justify-content-end">
+                    <button type="submit" value="settings-exit-button" id="settings-exit-button" class="btn btn-danger">Çıkış</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div style="display: none;">
+        {% if message %}
+        <p id="message">{{ message | safe }}</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>

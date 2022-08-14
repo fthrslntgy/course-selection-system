@@ -7,7 +7,7 @@ import time
 app = Flask(__name__)
 app.secret_key = 'random string'
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='fatih1')
+    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='Mert_201')
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     return conn, cur
 
@@ -180,6 +180,21 @@ def create_lecture():
             flash('Ders başarıyla oluşturuldu!')
         finally:
             return render_template('admin.html', username=active_username)
+
+@app.route('/Settings',  methods=['GET'])  
+def Settings():    
+    if(request.method == "GET"):
+        return render_template('settings.html', message="Settings ekranına geçildi!")
+
+@app.route('/ExitSettings',  methods=['GET'])  
+def ExitSettings():    
+    if(request.method == "GET"):
+        if(active_group == 'admin'):
+            return render_template('admin.html', message="Admin ekranına geçildi!")
+        elif (active_group == 'academician'):
+            return render_template('academician.html', message="Akademiysen ekranına geçildi!")
+        else:
+            return render_template('student.html', message="Öğrenci ekranına geçildi!")
 
 if __name__ == '__main__':
     app.run()
