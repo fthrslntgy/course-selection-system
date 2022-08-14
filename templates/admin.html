@@ -22,6 +22,30 @@
     <script type="text/javascript" src="{{ url_for('static', filename='style/script/admin.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            $('#admin-but-1').click(function(e) {
+                e.preventDefault();
+                $.post("/get_all_academicians", function(response) {
+                    $('#academician_table_out').html(response);
+                    $('#academician_table_out').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#admin-but-2').click(function(e) {
+                e.preventDefault();
+                $.post("/get_all_students", function(response) {
+                    $('#student_table_out').html(response);
+                    $('#student_table_out').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
             $('#admin-but-3').click(function(e) {
                 e.preventDefault();
                 $.post("/get_all_lectures", function(response) {
@@ -107,49 +131,7 @@
         <div class="col-10 mt-3" id="admin-academician">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
-                        <table>
-                            <tr class="attributes">
-                                <th>Kullanıcı Adı</th>
-                                <th>İsim</th>
-                                <th>2. İsim</th>
-                                <th>Soyisim</th>
-                                <th>Bölüm</th>
-                                <th>Sınıf</th>
-                                <th>Yaş</th>
-                                <th>Telefon Numarası</th>
-                            </tr>
-                            <tr>
-                                <td class="data">Alfreds Futterkiste</td>
-                                <td class="data">Maria Anders</td>
-                                <td class="data">Germany</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Centro comercial Moctezuma</td>
-                                <td class="data">Francisco Chang</td>
-                                <td class="data">Mexico</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Ernst Handel</td>
-                                <td class="data">Roland Mendel</td>
-                                <td class="data">Austria</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Island Trading</td>
-                                <td class="data">Helen Bennett</td>
-                                <td class="data">UK</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Laughing Bacchus Winecellars</td>
-                                <td class="data">Yoshi Tannamuri</td>
-                                <td class="data">Canada</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Magazzini Alimentari Riuniti</td>
-                                <td class="data">Giovanni Rovelli</td>
-                                <td class="data">Italy</td>
-                            </tr>
-                        </table>
+                    <div class="col-12" id="academician_table_out">
                     </div>
                     <div class="col-12 d-flex justify-content-end text-right mt-3">
                         <button id="create-button" onclick="addAcademician()">Akademisyen Ekle</button>
@@ -160,50 +142,8 @@
         <div class="col-10 mt-3" id="admin-student">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
-                        <table>
-                            <tr class="attributes">
-                                <th>Kullanıcı Adı</th>
-                                <th>İsim</th>
-                                <th>2. İsim</th>
-                                <th>Soyisim</th>
-                                <th>Öğrenci Numarası</th>
-                                <th>Bölüm</th>
-                                <th>Sınıf</th>
-                                <th>Yaş</th>
-                                <th>Telefon Numarası</th>
-                            </tr>
-                            <tr>
-                                <td class="data">Alfreds Futterkiste</td>
-                                <td class="data">Maria Anders</td>
-                                <td class="data">Germany</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Centro comercial Moctezuma</td>
-                                <td class="data">Francisco Chang</td>
-                                <td class="data">Mexico</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Ernst Handel</td>
-                                <td class="data">Roland Mendel</td>
-                                <td class="data">Austria</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Island Trading</td>
-                                <td class="data">Helen Bennett</td>
-                                <td class="data">UK</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Laughing Bacchus Winecellars</td>
-                                <td class="data">Yoshi Tannamuri</td>
-                                <td class="data">Canada</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Magazzini Alimentari Riuniti</td>
-                                <td class="data">Giovanni Rovelli</td>
-                                <td class="data">Italy</td>
-                            </tr>
-                        </table>
+                    <div class="col-12" id="student_table_out">
+                        
                     </div>
                     <div class="col-12 d-flex justify-content-end text-right mt-3">
                         <button id="create-button" onclick="addStudent()">Öğrenci Ekle</button>

@@ -1,0 +1,18 @@
+<table id="academician_table">
+    <tr class="attributes">
+        <th>Adı</th>
+        <th>Kullanıcı Adı</th>
+        <th>Bölümü</th>
+        <th>Unvanı</th>
+        <th>Telefon Numarası</th>
+    </tr>
+    {% for row in academicians %} 
+    <tr>
+        <td class="data">{{row.fname}} {{row.lname}}</td>
+        <td class="data">{{row.username}}</td>
+        <td class="data">{{row.a_depcode}}</td>
+        <td class="data">{{row.a_degree}}</td>
+        <td class="data">{{row.phonenumber}}</td>
+    </tr>
+    {% endfor %}
+</table>
