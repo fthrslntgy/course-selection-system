@@ -45,7 +45,7 @@ body {
 }
 
 #exit-button {
-    background-color: red;
+    background-color: #ff4444;
     color: white;
     width: 120px;
     height: 40px;
@@ -58,14 +58,14 @@ body {
 
 #exit-button:hover {
     background-color: white;
-    color: red;
+    color: #ff4444;
     outline: none;
-    border: 2px solid red;
+    border: 2px solid #ff4444;
     transition: all 1s;
 }
 
 #exit-button:not(hover) {
-    background-color: red;
+    background-color: #ff4444;
     color: white;
     outline: none;
     transition: all 1s;
