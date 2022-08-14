@@ -16,26 +16,38 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <script type="text/javascript" src="{{ url_for('static', filename='style/script/admin.js') }}"></script>
     <link rel="icon" href="{{ url_for('static', filename='style/images/logo.png') }}" type="image/icon type">
     <title>Sistem Yöneticisi</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='style/script/admin.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#create-lecture-button').click(function(e) {
                 e.preventDefault();
                 $.post("/get_all_depcodes", function(response) {
-                    $('#dep-codes').html(response);
-                    $('#dep-codes').append(response.htmlresponse);
+                    $('#show-dep-codes').html(response);
+                    $('#show-dep-codes').append(response.htmlresponse);
                 });
                 return false;
             });
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+         $('#show-dep-codes').change(function(){
+            $.post("/get_academicians_with_depcode", {
+             depcode: $('#dep-codes').val(),
+            }, function(response){ 
+                $('#show-academician-names').html(response);
+                $('#show-academician-names').append(response.htmlresponse);
+            });
+            return false;
+          });
+        }); 
+        </script>
 </head>
 
 <body>
-
     <div class="row d-flex flex-row" style="width: 100%;" id="first-row">
         <div class="col3 d-flex align-items-center justify-content-center">
             <img src="{{ url_for('static', filename='style/images/logo2.png') }}" alt="logo" id="logo">
@@ -43,6 +55,18 @@
         <div class="col-8 d-flex align-items-center justify-content-center">
             <label id="title">Bilgi Yönetim Sistemi</label>
         </div>
+        {% block content %}
+            <div class="container">
+                {% for message in get_flashed_messages() %}
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
+                </div>
+                {% endfor %}
+
+                {% block page_content %}{% endblock %}
+            </div>
+        {% endblock %}
         <div class="col-1 ml-5 d-flex align-items-center justify-content-center">
             <button class="nav-but">
                 <span class="material-symbols-outlined" class="navbar-buttons">
@@ -338,39 +362,41 @@
             </form>
         </div>
         <div class="create-form" id="add-lecture-form">
-            <form action="" id="lecture-inputs">
+            <form action="./create_lecture" method="post" id="lecture-inputs">
                 <div class="container-fluid">
                     <div class="row mt-4 ml-2">
                         <div class="col-12">
                             <h2 class="form-title">Ders Ekle</h2>
                         </div>
                         <div class="col-4 form-input">
-                            <input type="text" placeholder="İsim">
+                            <div id="show-dep-codes"></div>
                         </div>
                         <div class="col-4 form-input">
-                            <div id="dep-codes"></div>
+                            <label>Ders Kodu</label>
+                            <input type="text" placeholder="101" id="lecturecode" name="lecturecode">
                         </div>
                         <div class="col-4 form-input">
-                            <input type="text" placeholder="Ders Kodu">
+                            <label>Kredi</label>
+                            <input type="text" placeholder="4" id="credit" name="credit">
                         </div>
                         <div class="col-4 form-input">
-                            <input type="text" placeholder="Credit">
+                            <div id="show-academician-names">
+                                <div class="form-group">
+                                    <label>Akademisyen</label>
+                                    <br>
+                                    <select name="academician-names" id="academician-names" class="form-control">
+                                        <option value="Önce Bölüm Seçiniz" selected="selected">Önce Bölüm Seçiniz</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-4 form-input">
-                            <div id="academician-of-depts"></div>
-                        </div>
-                        <div class="col-4 form-input">
-                            <input type="text" placeholder="Asistan">
-                        </div>
-                        <div class="col-4 form-input">
-                            <input type="text" placeholder="Ders Saatleri">
-                        </div>
-                        <div class="col-4 form-input">
-                            <input type="text" placeholder="Kontenjan">
+                            <label>Kontenjan</label>
+                            <input type="text" placeholder="40" id="quota" name="quota">
                         </div>
                         <div class="col-12 mt-5 text-right">
                             <input type="button" onclick="closePopUp(2)" value="Çıkış" class="btn btn-danger">
-                            <input type="button" onclick="sendUserData(2)" value="Kaydet" class="btn btn-success ml-3">
+                            <input type="button" onclick="createLecture()" value="Kaydet" class="btn btn-success ml-3">
                         </div>
                     </div>
                 </div>

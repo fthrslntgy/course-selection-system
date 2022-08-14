@@ -1,7 +1,8 @@
 <div class="form-group">
-    <label>Select Department</label>
-    <select name="dep-codes" id="dep-codes">
-         <option value="" selected="selected"></option>
+    <label>Bölüm</label>
+    <br>
+    <select name="dep-codes" id="dep-codes" class="form-control">
+         <option value="Seçiniz" selected="selected">Seçiniz</option>
           {% for row in depcodes %} 
           <option value="{{row.depcode}}">{{row.depcode}}</option>
           {% endfor %}

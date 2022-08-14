@@ -86,13 +86,52 @@ function closePopUp(choice) {
         document.getElementById('exit-row').style.opacity = 1;
     }
 }
+
 //user'a gore formu gonder
-function sendUserDatas(choice) {
-    if (choice == 0) {
+function validationCode(value) {
+    var valueRegex = /^[1-4][0-9][0-9]$/;
+    return valueRegex.test(value);
+}
 
-    } else if (choice == 1) {
+function validationCredit(value) {
+    var valueRegex = /^[1-4]$/;
+    return valueRegex.test(value);
+}
 
-    } else {
+function validationQuota(value) {
+    var valueRegex = /^[1-9][0-9]$/;
+    return valueRegex.test(value);
+}
 
+function createLecture() {
+
+    const depcode = document.getElementById("dep-codes").value;
+    const lecturecode = document.getElementById("lecturecode").value;
+    const lecturer = document.getElementById("academician-names").value;
+    const quota = document.getElementById("quota").value;
+    const credit = document.getElementById("credit").value;
+
+    if(!validationCode(lecturecode)){
+        alert("Lütfen ders kodunu 100-499 arası sayılardan veriniz!");
+    }
+
+    else if(!validationCredit(credit)){
+        alert("Lütfen ders kredisini 1-4 arası sayılardan veriniz!");
+    }
+
+    else if(!validationQuota(quota)){
+        alert("Lütfen ders kontjanını 10-99 arası sayılardan veriniz!");
+    }
+
+    else if(depcode == "Seçiniz"){
+        alert("Lütfen bölüm seçiniz");
+    }
+
+    else if(lecturer == "Seçiniz" || lecturer == "Önce Bölüm Seçiniz"){
+        alert("Lütfen akademisyen seçiniz");
+    }
+
+    else{
+        document.getElementById("lecture-inputs").submit();
     }
 }
