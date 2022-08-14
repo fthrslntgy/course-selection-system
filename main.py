@@ -7,7 +7,7 @@ import time
 app = Flask(__name__)
 app.secret_key = 'random string'
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='fatih1')
+    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='Mert_201')
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     return conn, cur
 
