@@ -3,7 +3,7 @@
     <select name="dep-codes" id="dep-codes">
          <option value="" selected="selected"></option>
           {% for row in depcodes %} 
-          <option value="{{row.depcode}}"></option>
+          <option value="{{row.depcode}}">{{row.depcode}}</option>
           {% endfor %}
       </select>
 </div>

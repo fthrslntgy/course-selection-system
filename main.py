@@ -3,7 +3,7 @@ import psycopg2
 
 app = Flask(__name__)
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='Mert_201')
+    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='fatih1')
     return conn
 global active_username
 global active_group
@@ -96,15 +96,15 @@ def get_unread_notifications():
 
 @app.route("/get_all_depcodes",methods=["POST","GET"])
 def get_all_depcodes():
-    if request.method == 'GET':
+    if request.method == 'POST':
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute('SELECT DepCode FROM "DEPARTMENT";')
-        query = cur.fetchall()
+        depcodes = cur.fetchall()
         cur.close()
         conn.close()
-        print(query)
-        return jsonify({'htmlresponse': render_template('depcodes.html', depcodes=query)})
+        print(depcodes)
+        return jsonify({'htmlresponse': render_template('depcodes.html', depcodes=depcodes)})
 
 @app.route("/get_credit_limit_by_depcode",methods=["POST","GET"])
 def get_credit_limit_by_depcode():
