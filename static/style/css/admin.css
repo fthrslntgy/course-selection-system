@@ -78,7 +78,7 @@ body {
 }
 
 #message {
-    font-size: 30px;
+    font-size: 25px;
     font-family: Figtree;
     color: rgb(240, 138, 32);
 }
@@ -90,7 +90,6 @@ body {
     cursor: pointer;
     overflow: hidden;
     outline: none;
-    margin-top: 1rem;
     font-family: Figtree;
     font-size: 24px;
     font-weight: 500;

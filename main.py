@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from lib2to3.pytree import Base
 from flask import Flask, render_template, request, jsonify, flash
 import psycopg2
@@ -46,13 +47,21 @@ def Login():
                 return render_template('login.html', message="Hatalı şifre!")
             else:
                 group = query['grouptype']
+                fname = query['fname']
+                minit = query['minit']
+                lname = query['lname']
+                name = ""
+                if (minit == "-"):
+                    name = fname + " " + lname
+                else:
+                    name = fname + " " + minit + " " + lname
                 set_globals(username, group)
                 if(group == "admin"):
-                    return render_template('admin.html', username=username)
+                    return render_template('admin.html', username=name)
                 elif(group == "academician"):
-                    return render_template('academician.html', username=username) 
+                    return render_template('academician.html', username=name) 
                 else:
-                    return render_template('student.html', username=username)  
+                    return render_template('student.html', username=name)  
 
 @app.route('/Logout',  methods=['GET'])  
 def Logout():    
