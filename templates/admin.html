@@ -22,6 +22,18 @@
     <script type="text/javascript" src="{{ url_for('static', filename='style/script/admin.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            $('#admin-but-3').click(function(e) {
+                e.preventDefault();
+                $.post("/get_all_lectures", function(response) {
+                    $('#lecture_table_out').html(response);
+                    $('#lecture_table_out').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
             $('#create-lecture-button').click(function(e) {
                 e.preventDefault();
                 $.post("/get_all_depcodes", function(response) {
@@ -44,7 +56,7 @@
             return false;
           });
         }); 
-        </script>
+    </script>
 </head>
 
 <body>
@@ -88,9 +100,9 @@
                 <p id="message">Hoşgeldiniz {{ username | safe }}</p>
                 {% endif %}
             </div>
-            <button class="process-button" onclick="academicianTableActive()">Akademisyenler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
-            <button class="process-button" onclick="studentTableActive()">Öğrenciler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
-            <button class="process-button" onclick="lectureTableActive()">Dersler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
+            <button class="process-button" id=admin-but-1 onclick="academicianTableActive()">Akademisyenler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
+            <button class="process-button" id=admin-but-2 onclick="studentTableActive()">Öğrenciler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
+            <button class="process-button" id=admin-but-3 onclick="lectureTableActive()">Dersler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
         </div>
         <div class="col-10 mt-3" id="admin-academician">
             <div class="container">
@@ -202,48 +214,8 @@
         <div class="col-10 mt-3" id="admin-lecture">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
-                        <table>
-                            <tr class="attributes">
-                                <th>Ders Kodu</th>
-                                <th>Bölüm Kodu</th>
-                                <th>Akademisyen</th>
-                                <th>Asistan</th>
-                                <th>Kredi</th>
-                                <th>Kontenjan</th>
-                                <th>Ders Saatleri</th>
-                            </tr>
-                            <tr>
-                                <td class="data">Alfreds Futterkiste</td>
-                                <td class="data">Maria Anders</td>
-                                <td class="data">Germany</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Centro comercial Moctezuma</td>
-                                <td class="data">Francisco Chang</td>
-                                <td class="data">Mexico</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Ernst Handel</td>
-                                <td class="data">Roland Mendel</td>
-                                <td class="data">Austria</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Island Trading</td>
-                                <td class="data">Helen Bennett</td>
-                                <td class="data">UK</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Laughing Bacchus Winecellars</td>
-                                <td class="data">Yoshi Tannamuri</td>
-                                <td class="data">Canada</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Magazzini Alimentari Riuniti</td>
-                                <td class="data">Giovanni Rovelli</td>
-                                <td class="data">Italy</td>
-                            </tr>
-                        </table>
+                    <div class="col-12" id="lecture_table_out">
+                        
                     </div>
                     <div class="col-12 d-flex justify-content-end text-right mt-3">
                         <form action="./get_all_depcodes" method="get">

@@ -68,7 +68,17 @@ def get_all_depcodes():
         query = cur.fetchall()
         cur.close()
         conn.close()
-        return jsonify({'htmlresponse': render_template('api_depcodes.html', depcodes=query)})
+        return jsonify({'htmlresponse': render_template('api_depcodes_form.html', depcodes=query)})
+
+@app.route("/get_all_lectures",methods=["POST","GET"])
+def get_all_lectures():
+    if request.method == 'POST':
+        conn, cur = get_db_connection()
+        cur.execute('SELECT * FROM "LECTURE"')
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify({'htmlresponse': render_template('api_lectures_table.html', lectures=query)})
 
 @app.route("/get_academicians_with_depcode",methods=["POST","GET"])
 def get_academicians_with_depcode():
@@ -79,7 +89,7 @@ def get_academicians_with_depcode():
         query = cur.fetchall()
         cur.close()
         conn.close()
-        return jsonify({'htmlresponse': render_template('api_academicians.html', academicians=query)})
+        return jsonify({'htmlresponse': render_template('api_academicians_form.html', academicians=query)})
 
 @app.route("/create_lecture",methods=["POST","GET"])
 def create_lecture():
