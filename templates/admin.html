@@ -21,9 +21,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='style/script/admin.js') }}"></script>
     <script type="text/javascript">
-        setTimeout(function() {
-            $('#flash-message').fadeOut('1000');
-        }, 5000);
+        const msg = document.getElementsByClassName("alert alert-warning").innerHTML;
+        if (msg == undefined) {
+            setTimeout(function() {
+                $('#flash-message').fadeOut('1000');
+            }, 500);
+        } else {
+            setTimeout(function() {
+                $('#flash-message').fadeOut('1000');
+            }, 5000);
+        }
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -60,7 +67,6 @@
                 return false;
             });
         });
-    </script>
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -124,6 +130,7 @@
             });
         });
     </script>
+
 </head>
 
 <body>
@@ -222,7 +229,7 @@
                             <input type="text" placeholder="Soyisim" id="a_lname" name="a_lname">
                         </div>
                         <div class="col-4 d-flex align-items-center justify-content-start form-input">
-                            <div id="show-dep-codes-a"></div>
+                            <div id="show-dep-codes-a" style="width: 100%;"></div>
                         </div>
                         <div class="col-4 d-flex flex-column justify-content-start form-input">
                             <label for="degrees">Unvan</label>
@@ -257,7 +264,7 @@
                             <input type="text" placeholder="Soyisim" id="s_lname" name="s_lname">
                         </div>
                         <div class="col-4 d-flex align-items-center justify-content-start form-input">
-                            <div id="show-dep-codes-s"></div>
+                            <div id="show-dep-codes-s" style="width: 100%;"></div>
                         </div>
                         <div class="col-4 d-flex flex-column justify-content-start form-input" id="show-academician-names-s">
                             <label>Akademisyen</label>
@@ -279,7 +286,7 @@
                         </div>
                         <div class="col-4 d-flex flex-column justify-content-start form-input">
                             <label for="degrees">Eğitim Programı</label>
-                            <select id="s_degree" name ="s_degree" style="width: 80%;" class="form-control">
+                            <select id="s_degree" name="s_degree" style="width: 80%;" class="form-control">
                                 <option value="bachelor">Lisans</option>
                                 <option value="master">Yüksek Lisans</option>
                                 <option value="phd">Doktora</option>
