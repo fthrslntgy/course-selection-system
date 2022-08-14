@@ -7,7 +7,7 @@ import time
 app = Flask(__name__)
 app.secret_key = 'random string'
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='Mert_201')
+    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='fatih1')
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     return conn, cur
 
@@ -111,6 +111,53 @@ def get_academicians_with_depcode():
         conn.close()
         return jsonify({'htmlresponse': render_template('api_academicians_form.html', academicians=query)})
 
+@app.route("/create_academician",methods=["POST","GET"])
+def create_academician():
+    if request.method == 'POST':
+        username = request.form.get("a_username")
+        fname = request.form.get("a_fname")
+        lname = request.form.get("a_lname")
+        depcode = request.form.get("dep-codes")
+        degree = request.form.get("a_degree")
+        try:
+            conn, cur = get_db_connection()
+            cur.execute('INSERT INTO "USER" (Username, "Password", Fname, Lname, GroupType, FirstLogin) VALUES (%s, %s, %s, %s, %s, %s)', (username, username, fname, lname, "academician", "TRUE"))
+            cur.execute('INSERT INTO "ACADEMICIAN" (A_Username, A_DepCode, "A_Degree") VALUES (%s, %s, %s)', (username, depcode, degree))
+            conn.commit()
+            cur.close()
+            conn.close()
+        except BaseException as e:
+            flash('Akademisyen oluşturulamadı! --> ' + str(e))
+        else:
+            flash('Akademisyen başarıyla oluşturuldu!')
+        finally:
+            return render_template('admin.html', username=active_username)
+
+@app.route("/create_student",methods=["POST","GET"])
+def create_student():
+    if request.method == 'POST':
+        username = request.form.get("s_username")
+        fname = request.form.get("s_fname")
+        lname = request.form.get("s_lname")
+        depcode = request.form.get("dep-codes")
+        advicer = request.form.get("academician-names")
+        studentnumber = request.form.get("s_number")
+        degree = request.form.get("s_degree")
+        grade = request.form.get("s_grade")
+        try:
+            conn, cur = get_db_connection()
+            cur.execute('INSERT INTO "USER" (Username, "Password", Fname, Lname, GroupType, FirstLogin) VALUES (%s, %s, %s, %s, %s, %s)', (username, username, fname, lname, "student", "TRUE"))
+            cur.execute('INSERT INTO "STUDENT" (S_Username, S_DepCode, Advicer, StudentNumber, "S_Degree", Grade) VALUES (%s, %s, %s, %s, %s, %s)', (username, depcode, advicer, studentnumber, degree, grade))
+            conn.commit()
+            cur.close()
+            conn.close()
+        except BaseException as e:
+            flash('Öğrenci oluşturulamadı! --> ' + str(e))
+        else:
+            flash('Öğrenci başarıyla oluşturuldu!')
+        finally:
+            return render_template('admin.html', username=active_username)
+
 @app.route("/create_lecture",methods=["POST","GET"])
 def create_lecture():
     if request.method == 'POST':
@@ -119,9 +166,9 @@ def create_lecture():
         lecturer = request.form.get("academician-names")
         quota = request.form.get("quota")
         quota = int(quota)
+        credit = request.form.get("credit")
+        credit = int(credit)
         try:
-            credit = request.form.get("credit")
-            credit = int(credit)
             conn, cur = get_db_connection()
             cur.execute('INSERT INTO "LECTURE" (LectureCode, L_DepCode, Lecturer, Credit, Quota) VALUES (%s, %s, %s, %s, %s)', (lecturecode, depcode, lecturer, credit, quota))
             conn.commit()
@@ -132,13 +179,7 @@ def create_lecture():
         else:
             flash('Ders başarıyla oluşturuldu!')
         finally:
-            active_username, active_group = get_globals()
-            if(active_group == "admin"):
-                    return render_template('admin.html', username=active_username)
-            elif(active_group == "academician"):
-                return render_template('academician.html', username=active_username) 
-            else:
-                return render_template('student.html', username=active_username)
+            return render_template('admin.html', username=active_username)
 
 if __name__ == '__main__':
     app.run()

@@ -21,6 +21,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='style/script/admin.js') }}"></script>
     <script type="text/javascript">
+        setTimeout(function() {
+            $('#flash-message').fadeOut('1000');
+        }, 5000);
+    </script>
+    <script type="text/javascript">
         $(document).ready(function() {
             $('#admin-but-1').click(function(e) {
                 e.preventDefault();
@@ -56,31 +61,64 @@
             });
         });
     </script>
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#create-lecture-button').click(function(e) {
+            $('#create-academician-button').click(function(e) {
                 e.preventDefault();
                 $.post("/get_all_depcodes", function(response) {
-                    $('#show-dep-codes').html(response);
-                    $('#show-dep-codes').append(response.htmlresponse);
+                    $('#show-dep-codes-a').html(response);
+                    $('#show-dep-codes-a').append(response.htmlresponse);
                 });
                 return false;
             });
         });
     </script>
     <script type="text/javascript">
-        setTimeout(function() {
-            $('#flash-message').fadeOut('1000');
-        }, 5000);
+        $(document).ready(function() {
+            $('#create-student-button').click(function(e) {
+                e.preventDefault();
+                $.post("/get_all_depcodes", function(response) {
+                    $('#show-dep-codes-s').html(response);
+                    $('#show-dep-codes-s').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#show-dep-codes').change(function() {
+            $('#show-dep-codes-s').change(function() {
                 $.post("/get_academicians_with_depcode", {
                     depcode: $('#dep-codes').val(),
                 }, function(response) {
-                    $('#show-academician-names').html(response);
-                    $('#show-academician-names').append(response.htmlresponse);
+                    $('#show-academician-names-s').html(response);
+                    $('#show-academician-names-s').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#create-lecture-button').click(function(e) {
+                e.preventDefault();
+                $.post("/get_all_depcodes", function(response) {
+                    $('#show-dep-codes-l').html(response);
+                    $('#show-dep-codes-l').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#show-dep-codes-l').change(function() {
+                $.post("/get_academicians_with_depcode", {
+                    depcode: $('#dep-codes').val(),
+                }, function(response) {
+                    $('#show-academician-names-l').html(response);
+                    $('#show-academician-names-l').append(response.htmlresponse);
                 });
                 return false;
             });
@@ -136,7 +174,7 @@
                     <div class="col-12" id="academician_table_out">
                     </div>
                     <div class="col-12 d-flex justify-content-end text-right mt-3">
-                        <button class="btn create-button" id="create-academcian-button" onclick="addAcademician()">Akademisyen Ekle</button>
+                        <button class="btn create-button" id="create-academician-button" onclick="addAcademician()">Akademisyen Ekle</button>
                     </div>
                 </div>
             </div>
@@ -168,27 +206,27 @@
             </div>
         </div>
         <div class="create-form" id="add-academician-form">
-            <form action="" id="academician-inputs">
+            <form action="./create_academician" method="post" id="academician-inputs">
                 <div class="container-fluid">
                     <div class="row d-flex mt-4 ml-2">
                         <div class="col-12">
                             <h2 class="form-title">Akademisyen Ekle</h2>
                         </div>
                         <div class="col-4 mt-3 d-flex align-items-center justify-content-start form-input">
-                            <input type="text" placeholder="Kullanıcı Adı" id="a_username">
+                            <input type="text" placeholder="Kullanıcı Adı" id="a_username" name="a_username">
                         </div>
                         <div class="col-4 mt-3 d-flex align-items-center justify-content-start form-input">
-                            <input type="text" placeholder="İsim" id="a_fname">
+                            <input type="text" placeholder="İsim" id="a_fname" name="a_fname">
                         </div>
                         <div class="col-4 mt-3 d-flex align-items-center justify-content-start form-input">
-                            <input type="text" placeholder="Soyisim" id="a_lname">
+                            <input type="text" placeholder="Soyisim" id="a_lname" name="a_lname">
                         </div>
                         <div class="col-4 d-flex align-items-center justify-content-start form-input">
-                            <input type="text" placeholder="Bölüm" id="a_depcode">
+                            <div id="show-dep-codes-a"></div>
                         </div>
                         <div class="col-4 d-flex flex-column justify-content-start form-input">
                             <label for="degrees">Unvan</label>
-                            <select name="degree" id="a_degree" style="width: 80%;" class="form-control">
+                            <select name="a_degree" id="a_degree" style="width: 80%;" class="form-control">
                                 <option value="research">Araştırma Görevlisi</option>
                                 <option value="associate">Doçent</option>
                                 <option value="professor">Profesör</option>
@@ -196,60 +234,60 @@
                         </div>
                         <div class="col-12 mt-5 text-right">
                             <input type="button" onclick="closePopUp(0)" value="Çıkış" class="btn btn-danger">
-                            <input type="button" onclick="sendUserData(0)" value="Kaydet" class="btn btn-success ml-3">
+                            <input type="button" onclick="createAcademician()" value="Kaydet" class="btn btn-success ml-3">
                         </div>
                     </div>
                 </div>
             </form>
         </div>
         <div class="create-form" id="add-student-form">
-            <form action="" id="student-inputs">
+            <form action="./create_student" method="post" id="student-inputs">
                 <div class="container-fluid">
                     <div class="row d-flex mt-4 ml-2">
                         <div class="col-12">
                             <h2 class="form-title">Öğrenci Ekle</h2>
                         </div>
                         <div class="col-4 d-flex align-items-center justify-content-start mt-3 form-input">
-                            <input type="text" placeholder="Kullanıcı Adı" id="s_username">
+                            <input type="text" placeholder="Kullanıcı Adı" id="s_username" name="s_username">
                         </div>
                         <div class="col-4 d-flex align-items-center justify-content-start mt-3 form-input">
-                            <input type="text" placeholder="İsim" id="s_fname">
+                            <input type="text" placeholder="İsim" id="s_fname" name="s_fname">
                         </div>
                         <div class="col-4 d-flex align-items-center justify-content-start mt-3 form-input">
-                            <input type="text" placeholder="Soyisim" id="s_lname">
+                            <input type="text" placeholder="Soyisim" id="s_lname" name="s_lname">
                         </div>
                         <div class="col-4 d-flex align-items-center justify-content-start form-input">
-                            <input type="text" placeholder="Bölüm" id="s_depcode">
+                            <div id="show-dep-codes-s"></div>
                         </div>
-                        <div class="col-4 d-flex flex-column justify-content-start form-input" id="show-academician-names">
-                            <label>Danışman</label>
+                        <div class="col-4 d-flex flex-column justify-content-start form-input" id="show-academician-names-s">
+                            <label>Akademisyen</label>
                             <select name="academician-names" id="academician-names" class="form-control" style="width: 80%;">
                                 <option value="Önce Bölüm Seçiniz" selected="selected">Önce Bölüm Seçiniz</option>
                             </select>
                         </div>
                         <div class="col-4 d-flex align-items-center justify-content-start form-input">
-                            <input type="text" placeholder="Öğrenci Numarası" id="s_number">
+                            <input type="text" placeholder="Öğrenci Numarası" id="s_number" name="s_number">
                         </div>
                         <div class="col-4 d-flex flex-column justify-content-start form-input">
                             <label for="degrees">Sınıf</label>
-                            <select name="grade" id="s_grade" style="width: 80%;" class="form-control">
+                            <select id="s_grade" name="s_grade" style="width: 80%;" class="form-control">
                                 <option value="1">1</option>
-                                <option value="1">2</option>
-                                <option value="1">3</option>
-                                <option value="1">4</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
                             </select>
                         </div>
                         <div class="col-4 d-flex flex-column justify-content-start form-input">
                             <label for="degrees">Eğitim Programı</label>
-                            <select name="degree" id="s_degree" style="width: 80%;" class="form-control">
-                                <option value="1">Lisans</option>
-                                <option value="1">Yüksek Lisans</option>
-                                <option value="1">Doktora</option>
+                            <select id="s_degree" name ="s_degree" style="width: 80%;" class="form-control">
+                                <option value="bachelor">Lisans</option>
+                                <option value="master">Yüksek Lisans</option>
+                                <option value="phd">Doktora</option>
                             </select>
                         </div>
                         <div class="col-12 mt-5 text-right">
                             <input type="button" onclick="closePopUp(1)" value="Çıkış" class="btn btn-danger">
-                            <input type="button" onclick="sendUserData(1)" value="Kaydet" class="btn btn-success ml-3">
+                            <input type="button" onclick="createStudent()" value="Kaydet" class="btn btn-success ml-3">
                         </div>
                     </div>
                 </div>
@@ -263,17 +301,17 @@
                             <h2 class="form-title">Ders Ekle</h2>
                         </div>
                         <div class="col-4 mt-3 d-flex flex-column justify-content-start form-input">
-                            <div id="show-dep-codes"></div>
+                            <div id="show-dep-codes-l"></div>
                         </div>
                         <div class="col-4 mt-3 d-flex flex-column align-items-center justify-content-start form-input">
                             <label>Ders Kodu</label>
-                            <input type="text" placeholder="101" id="lecturecode" name="lecturecode">
+                            <input type="text" placeholder="101" id="l_lecturecode" name="l_lecturecode">
                         </div>
                         <div class="col-4 mt-3 d-flex flex-column align-items-center justify-content-start form-input">
                             <label>Kredi</label>
-                            <input type="text" placeholder="4" id="credit" name="credit">
+                            <input type="text" placeholder="4" id="l_credit" name="l_credit">
                         </div>
-                        <div class="col-4 d-flex flex-column justify-content-start form-input" id="show-academician-names">
+                        <div class="col-4 d-flex flex-column justify-content-start form-input" id="show-academician-names-l">
                             <label>Akademisyen</label>
                             <select name="academician-names" id="academician-names" class="form-control" style="width: 80%;">
                                 <option value="Önce Bölüm Seçiniz" selected="selected">Önce Bölüm Seçiniz</option>
@@ -281,7 +319,7 @@
                         </div>
                         <div class="col-4 d-flex flex-column align-items-center justify-content-start form-input">
                             <label>Kontenjan</label>
-                            <input type="text" placeholder="40" id="quota" name="quota">
+                            <input type="text" placeholder="40" id="l_quota" name="l_quota">
                         </div>
                         <div class="col-12 mt-5 text-right">
                             <input type="button" onclick="closePopUp(2)" value="Çıkış" class="btn btn-danger">

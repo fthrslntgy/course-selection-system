@@ -87,7 +87,79 @@ function closePopUp(choice) {
     }
 }
 
-//user'a gore formu gonder
+function validationUsername(value){
+    var valueRegex = /^[a-zA-Z0-9]{4,}$/;
+    return valueRegex.test(value);
+}
+
+function validationName(value){
+    var valueRegex = /^[a-zA-Z]{2,}$/;
+    return valueRegex.test(value);
+}
+
+function createAcademician(){
+
+    const username = document.getElementById("a_username").value;
+    const fname = document.getElementById("a_fname").value;
+    const lname = document.getElementById("a_lname").value;
+    const depcode = document.getElementById("dep-codes").value;
+
+    if(!validationUsername(username)){
+        alert("Lütfen kullanıcı adını minimum 4 karakter ve alfanümerik olarak veriniz!");
+    }
+
+    else if(!validationName(fname) || !validationName(lname)){
+        alert("Lütfen adı ve soyadı minimum 2 harften oluşacak şekilde ve yalnızca harflerden oluşacak şekilde veriniz!");
+    }
+
+    else if(depcode == "Seçiniz"){
+        alert("Lütfen bölüm seçiniz");
+    }
+
+    else{
+        document.getElementById("academician-inputs").submit();
+    }
+}
+
+function validationStudentNumber(value) {
+    var valueRegex = /^[1-9][0-9]{8}$/;
+    return valueRegex.test(value);
+}
+
+function createStudent(){
+
+    const username = document.getElementById("s_username").value;
+    const fname = document.getElementById("s_fname").value;
+    const advicer = document.getElementById("academician-names").value;
+    const lname = document.getElementById("s_lname").value;
+    const studentnumber = document.getElementById("s_number").value
+    const depcode = document.getElementById("dep-codes").value;
+    
+    if(!validationUsername(username)){
+        alert("Lütfen kullanıcı adını minimum 4 karakter ve alfanümerik olarak veriniz!");
+    }
+
+    else if(!validationName(fname) || !validationName(lname)){
+        alert("Lütfen adı ve soyadı minimum 2 harften oluşacak şekilde ve yalnızca harflerden oluşacak şekilde veriniz!");
+    }
+
+    else if(!validationStudentNumber(studentnumber)){
+        alert("Lütfen öğrenci numarasını 0'la başlamayacak şekilde 9 haneli olarak veriniz!");
+    }
+
+    else if(depcode == "Seçiniz"){
+        alert("Lütfen bölüm seçiniz");
+    }
+
+    else if(advicer == "Seçiniz" || advicer == "Önce Bölüm Seçiniz"){
+        alert("Lütfen akademisyen seçiniz");
+    }
+
+    else{
+        document.getElementById("student-inputs").submit();
+    }
+}
+
 function validationCode(value) {
     var valueRegex = /^[1-4][0-9][0-9]$/;
     return valueRegex.test(value);
@@ -106,10 +178,10 @@ function validationQuota(value) {
 function createLecture() {
 
     const depcode = document.getElementById("dep-codes").value;
-    const lecturecode = document.getElementById("lecturecode").value;
+    const lecturecode = document.getElementById("l_lecturecode").value;
     const lecturer = document.getElementById("academician-names").value;
-    const quota = document.getElementById("quota").value;
-    const credit = document.getElementById("credit").value;
+    const quota = document.getElementById("l_quota").value;
+    const credit = document.getElementById("l_credit").value;
 
     if(!validationCode(lecturecode)){
         alert("Lütfen ders kodunu 100-499 arası sayılardan veriniz!");
