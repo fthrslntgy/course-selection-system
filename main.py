@@ -47,7 +47,7 @@ def Login():
                 else:
                     return render_template('student.html', username=active_username)  
 
-@app.route('/Logout')  
+@app.route('/Logout',  methods=['GET'])  
 def Logout():    
     if(request.method == "GET"):
         active_username = ""
