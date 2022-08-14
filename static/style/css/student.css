@@ -119,9 +119,8 @@ td:last-child {
 }
 
 #lecture-approvement-student {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: start;
+    flex-direction: row;
     display: none;
 }
 
