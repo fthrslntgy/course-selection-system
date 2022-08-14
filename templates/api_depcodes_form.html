@@ -1,10 +1,7 @@
-<div class="form-group">
-    <label>Bölüm</label>
-    <br>
-    <select name="dep-codes" id="dep-codes" class="form-control">
-         <option value="Seçiniz" selected="selected">Seçiniz</option>
-          {% for row in depcodes %} 
-          <option value="{{row.depcode}}">{{row.depcode}}</option>
-          {% endfor %}
-      </select>
-</div>
+<label>Bölüm</label>
+<select name="dep-codes" id="dep-codes" class="form-control" style="width: 80%;">
+    <option value="Seçiniz" selected="selected">Seçiniz</option>
+    {% for row in depcodes %} 
+    <option value="{{row.depcode}}">{{row.depcode}}</option>
+    {% endfor %}
+</select>
