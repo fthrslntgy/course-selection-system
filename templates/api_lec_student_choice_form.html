@@ -1,0 +1,7 @@
+<label>Seçilebilecek Dersler</label>
+<select name="choicable-lecture" id="choicable-lecture" class="form-control" style="width: 100%;">
+    <option value="Seçiniz" selected="selected">Seçiniz</option>
+    {% for row in lectures %} 
+    <option value="{{row.l_depcode}}|{{row.lecturecode}} ">Ders: {{row.l_depcode}}{{row.lecturecode}} -- Akademisyen: {{row.fname}} {{row.lname}}</option>
+    {% endfor %}
+</select>

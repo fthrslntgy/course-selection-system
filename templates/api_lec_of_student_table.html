@@ -1,0 +1,18 @@
+<table id="student_lecture_table">
+    <tr class="attributes">
+        <th>Ders</th>
+        <th>Akademisyen</th>
+        <th>Kredi</th>
+        <th>Kontenjan</th>
+        <th>Onay Durumu</th>
+    </tr>
+    {% for row in lectures %} 
+    <tr>
+        <td class="data">{{row.l_depcode}}{{row.lecturecode}}</td>
+        <td class="data">{{row.fname}} {{row.lname}}</td>
+        <td class="data">{{row.credit}}</td>
+        <td class="data">{{row.quota}}</td>
+        <td class="data">{{row.approved}}</td>
+    </tr>
+    {% endfor %}
+</table>

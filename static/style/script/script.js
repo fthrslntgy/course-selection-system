@@ -72,7 +72,3 @@ function lectureApprovementStudentActive() {
     document.getElementById('lecture-of-student').style.display = 'none';
     $('#lecture-approvement-student').slideDown('2000');
 }
-
-function sendStudentsChoseLectures() {
-
-}

@@ -7,7 +7,7 @@ import time
 app = Flask(__name__)
 app.secret_key = 'random string'
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='Mert_201')
+    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='fatih1')
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     return conn, cur
 
@@ -60,6 +60,21 @@ def Logout():
         set_globals("", "")
         return render_template('login.html', message="Başarıyla çıkış yaptınız!")
 
+@app.route('/Settings',  methods=['GET'])  
+def Settings():    
+    if(request.method == "GET"):
+        return render_template('settings.html', message="Settings ekranına geçildi!")
+
+@app.route('/ExitSettings',  methods=['GET'])  
+def ExitSettings():    
+    if(request.method == "GET"):
+        if(active_group == 'admin'):
+            return render_template('admin.html', message="Admin ekranına geçildi!")
+        elif (active_group == 'academician'):
+            return render_template('academician.html', message="Akademiysen ekranına geçildi!")
+        else:
+            return render_template('student.html', message="Öğrenci ekranına geçildi!")
+
 @app.route("/get_all_depcodes",methods=["POST","GET"])
 def get_all_depcodes():
     if request.method == 'POST':
@@ -89,6 +104,30 @@ def get_all_students():
         cur.close()
         conn.close()
         return jsonify({'htmlresponse': render_template('api_students_table.html', students=query)})
+
+@app.route("/get_lectures_of_student",methods=["POST","GET"])
+def get_lectures_of_student():
+    if request.method == 'POST':
+        user = active_username
+        conn, cur = get_db_connection()
+        cur.execute('SELECT * FROM "USER" AS U, "LECTURE" AS L, "STUDENT_LECTURES" AS SL WHERE SL.SL_Username=%s '
+                    'AND SL.SL_Depcode=L.L_DepCode AND SL.SL_LectureCode=L.LectureCode AND U.Username=L.Lecturer', [user])
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify({'htmlresponse': render_template('api_lec_of_student_table.html', lectures=query)})
+
+@app.route("/get_lectures_can_be_choice",methods=["POST","GET"])
+def get_lectures_can_be_choice():
+    if request.method == 'POST':
+        user = active_username
+        conn, cur = get_db_connection()
+        cur.execute('SELECT * FROM "STUDENT" AS S, "LECTURE" AS L, "USER" AS U WHERE S.S_Username=%s AND '
+                    'S.S_Depcode=L.L_Depcode AND L.Lecturer=U.Username', [user])
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify({'htmlresponse': render_template('api_lec_student_choice_form.html', lectures=query)})
 
 @app.route("/get_all_academicians",methods=["POST","GET"])
 def get_all_academicians():
@@ -180,21 +219,6 @@ def create_lecture():
             flash('Ders başarıyla oluşturuldu!')
         finally:
             return render_template('admin.html', username=active_username)
-
-@app.route('/Settings',  methods=['GET'])  
-def Settings():    
-    if(request.method == "GET"):
-        return render_template('settings.html', message="Settings ekranına geçildi!")
-
-@app.route('/ExitSettings',  methods=['GET'])  
-def ExitSettings():    
-    if(request.method == "GET"):
-        if(active_group == 'admin'):
-            return render_template('admin.html', message="Admin ekranına geçildi!")
-        elif (active_group == 'academician'):
-            return render_template('academician.html', message="Akademiysen ekranına geçildi!")
-        else:
-            return render_template('student.html', message="Öğrenci ekranına geçildi!")
 
 if __name__ == '__main__':
     app.run()
