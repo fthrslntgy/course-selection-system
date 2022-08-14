@@ -19,6 +19,11 @@
     <script type="text/javascript" src="{{ url_for('static', filename='style/script/script.js') }}"></script>
     <link rel="icon" href="{{ url_for('static', filename='style/images/logo.png') }}" type="image/icon type">
     <title>Öğrenci</title>
+    <script type="text/javascript">
+        setTimeout(function() {
+            $('#flash-message').fadeOut('1000');
+        }, 5000);
+    </script>
 </head>
 
 <body>
@@ -53,6 +58,14 @@
             <button class="process-button" onclick="lecturesOfStudentsActive()">Derslerim <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
             <button class="process-button" onclick="lectureApprovementStudentActive()">Ders Seçim Ekranı <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
         </div>
+        <div class="container" id="flash-message">
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+            {% endfor %} {% block page_content %}{% endblock %}
+        </div>
+        {% endblock %}
         <div class="col-10" id="lecture-of-student">
             <div class="container mt-3" id="lecture-of-student-table">
                 <div class="row">

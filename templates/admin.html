@@ -45,17 +45,22 @@
         });
     </script>
     <script type="text/javascript">
+        setTimeout(function() {
+            $('#flash-message').fadeOut('1000');
+        }, 5000);
+    </script>
+    <script type="text/javascript">
         $(document).ready(function() {
-         $('#show-dep-codes').change(function(){
-            $.post("/get_academicians_with_depcode", {
-             depcode: $('#dep-codes').val(),
-            }, function(response){ 
-                $('#show-academician-names').html(response);
-                $('#show-academician-names').append(response.htmlresponse);
+            $('#show-dep-codes').change(function() {
+                $.post("/get_academicians_with_depcode", {
+                    depcode: $('#dep-codes').val(),
+                }, function(response) {
+                    $('#show-academician-names').html(response);
+                    $('#show-academician-names').append(response.htmlresponse);
+                });
+                return false;
             });
-            return false;
-          });
-        }); 
+        });
     </script>
 </head>
 
@@ -67,18 +72,6 @@
         <div class="col-8 d-flex align-items-center justify-content-center">
             <label id="title">Bilgi Yönetim Sistemi</label>
         </div>
-        {% block content %}
-            <div class="container">
-                {% for message in get_flashed_messages() %}
-                <div class="alert alert-warning">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    {{ message }}
-                </div>
-                {% endfor %}
-
-                {% block page_content %}{% endblock %}
-            </div>
-        {% endblock %}
         <div class="col-1 ml-5 d-flex align-items-center justify-content-center">
             <button class="nav-but">
                 <span class="material-symbols-outlined" class="navbar-buttons">
@@ -104,6 +97,15 @@
             <button class="process-button" id=admin-but-2 onclick="studentTableActive()">Öğrenciler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
             <button class="process-button" id=admin-but-3 onclick="lectureTableActive()">Dersler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
         </div>
+        {% block content %}
+        <div class="container" id="flash-message">
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+            {% endfor %} {% block page_content %}{% endblock %}
+        </div>
+        {% endblock %}
         <div class="col-10 mt-3" id="admin-academician">
             <div class="container">
                 <div class="row">
@@ -215,7 +217,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12" id="lecture_table_out">
-                        
+
                     </div>
                     <div class="col-12 d-flex justify-content-end text-right mt-3">
                         <form action="./get_all_depcodes" method="get">
