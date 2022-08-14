@@ -74,11 +74,31 @@ def get_all_depcodes():
 def get_all_lectures():
     if request.method == 'POST':
         conn, cur = get_db_connection()
-        cur.execute('SELECT * FROM "LECTURE"')
+        cur.execute('SELECT * FROM "LECTURE" AS L, "USER" AS U WHERE L.lecturer=U.username')
         query = cur.fetchall()
         cur.close()
         conn.close()
         return jsonify({'htmlresponse': render_template('api_lectures_table.html', lectures=query)})
+
+@app.route("/get_all_students",methods=["POST","GET"])
+def get_all_students():
+    if request.method == 'POST':
+        conn, cur = get_db_connection()
+        cur.execute('SELECT * FROM "STUDENT" AS S, "USER" AS U WHERE S.s_username=U.username')
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify({'htmlresponse': render_template('api_students_table.html', students=query)})
+
+@app.route("/get_all_academicians",methods=["POST","GET"])
+def get_all_academicians():
+    if request.method == 'POST':
+        conn, cur = get_db_connection()
+        cur.execute('SELECT * FROM "ACADEMICIAN" AS A, "USER" AS U WHERE A.a_username=U.username')
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify({'htmlresponse': render_template('api_academicians_table.html', academicians=query)})
 
 @app.route("/get_academicians_with_depcode",methods=["POST","GET"])
 def get_academicians_with_depcode():

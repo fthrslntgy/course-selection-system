@@ -1,0 +1,24 @@
+<table id="student_table">
+    <tr class="attributes">
+        <th>Adı</th>
+        <th>Kullanıcı Adı</th>
+        <th>Öğrenci Numarası</th>
+        <th>Bölümü</th>
+        <th>Sınıfı</th>
+        <th>Öğrenim Seviyesi</th>
+        <th>Danışmanı</th>
+        <th>Telefon Numarası</th>
+    </tr>
+    {% for row in students %} 
+    <tr>
+        <td class="data">{{row.fname}} {{row.lname}}</td>
+        <td class="data">{{row.username}}</td>
+        <td class="data">{{row.studentnumber}}</td>
+        <td class="data">{{row.s_depcode}}</td>
+        <td class="data">{{row.grade}}</td>
+        <td class="data">{{row.s_degree}}</td>
+        <td class="data">{{row.advicer}}</td>
+        <td class="data">{{row.phonenumber}}</td>
+    </tr>
+    {% endfor %}
+</table>
