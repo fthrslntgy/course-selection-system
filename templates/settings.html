@@ -44,7 +44,7 @@
                         <input type="text" placeholder="Soyisim" id="lname" name="lname">
                     </div>
                     <div class="col-4 mt-3 d-flex align-items-center justify-content-start form-input">
-                        <input type="date" placeholder="Doğum Tarihi" id="birthdate" name="birthdate">
+                        <input type="text" placeholder="YYYY-AA-GG" id="birthdate" name="birthdate">
                     </div>
                     <div class="col-4 mt-3 d-flex align-items-center justify-content-start form-input">
                         <input type="text" placeholder="Adres" id="address" name="address">
@@ -53,7 +53,7 @@
                         <input type="text" placeholder="Telefon Numarası" id="phonenumber" name="phonenumber">
                     </div>
                     <div class="col-12 d-flex align-items-center justify-content-end mt-3 mb-3">
-                        <button type="submit" value="settings-save-button" id="settings-save-button" class="btn btn-success">Kaydet</button>
+                        <button type="submit" value="settings-save-button" id="settings-save-button" class="btn btn-success" onclick="SaveSettings()">Kaydet</button>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
         <form action="/ExitSettings" method="get" id="exit-settings-form">
             <div class="row mt-5">
                 <div class="col-12 d-flex align-items-center justify-content-end">
-                    <button type="submit" value="settings-exit-button" id="settings-exit-button" class="btn btn-danger">Çıkış</button>
+                    <button type="submit" value="settings-exit-button" id="settings-exit-button" class="btn btn-danger">Geri</button>
                 </div>
             </div>
         </form>
