@@ -19,6 +19,37 @@ body {
     margin-left: 2rem;
 }
 
+.nav-but {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    font-size: 35px;
+    color: #1c449c;
+}
+
+.navbar-buttons {
+    font-size: 35px;
+    color: #1c449c;
+}
+
+.navbar-buttons:hover {
+    color: white;
+}
+
+.navbar-buttons:focus {
+    outline: none;
+    color: white;
+}
+
+#message {
+    font-size: 30px;
+    font-family: Figtree;
+    color: rgb(240, 138, 32);
+}
+
 .process-button {
     background-color: transparent;
     background-repeat: no-repeat;

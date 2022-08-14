@@ -3,7 +3,7 @@ import psycopg2
 
 app = Flask(__name__)
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='fatih1')
+    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='Mert_201')
     return conn
 active_username = ""
 active_group = ""

@@ -1,3 +1,10 @@
+document.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("login-button").click();
+    }
+});
+
 window.onload = function() {
     const msg = document.getElementById("message").innerHTML;
     alert(msg);
