@@ -47,5 +47,12 @@ def Login():
                 else:
                     return render_template('student.html', username=active_username)  
 
+@app.route('/Logout')  
+def Logout():    
+    if(request.method == "GET"):
+        active_username = ""
+        active_group = ""
+        return render_template('login.html', message="Başarıyla çıkış yaptınız!")
+
 if __name__ == '__main__':
     app.run()
