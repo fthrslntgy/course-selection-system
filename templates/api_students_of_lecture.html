@@ -1,0 +1,16 @@
+<table id="student_of_lecture_table">
+    <tr class="attributes">
+        <th>Adı</th>
+        <th>Öğrenci Numarası</th>
+        <th>Sınıfı</th>
+        <th>Onay Durumu</th>
+    </tr>
+    {% for row in students %} 
+    <tr>
+        <td class="data">{{row.fname}} {{row.lname}}</td>
+        <td class="data">{{row.username}}</td>
+        <td class="data">{{row.studentnumber}}</td>
+        <td class="data">{{row.approved}}</td>
+    </tr>
+    {% endfor %}
+</table>

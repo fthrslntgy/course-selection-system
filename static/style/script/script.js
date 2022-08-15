@@ -58,7 +58,17 @@ function approvementFormActive() {
 }
 
 function saveAssistantApprovement() {
-    //asistanı ata
+
+    const lecture = document.getElementById('lectures-names').value;
+    const assistant = document.getElementById('assistant-names').value;
+
+    if(lecture == "Seçiniz" || assistant == "Seçiniz"){
+        alert("Lütfen dersi ve asistanı seçiniz");
+    }
+    
+    else{
+        document.getElementById('setassistant').submit();
+    }
 }
 
 //STUDENT

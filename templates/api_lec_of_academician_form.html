@@ -1,0 +1,7 @@
+<label id="lecture-label" class="ml-5">Ders:</label>
+<select name="lectures-names" id="lectures-names" class="form-control" style="width: 80%;">
+    <option value="Seçiniz" selected="selected">Seçiniz</option>
+    {% for row in lectures %} 
+    <option value="{{row.l_depcode}}{{row.lecturecode}}">{{row.l_depcode}}{{row.lecturecode}}</option>
+    {% endfor %}
+</select>

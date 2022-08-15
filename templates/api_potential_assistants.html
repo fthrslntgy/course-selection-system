@@ -1,0 +1,7 @@
+<label id="assistant-label" class="ml-5">Asistan</label>
+<select name="assistant-names" id="assistant-names" class="form-control" style="width: 80%;">
+    <option value="Seçiniz" selected="selected">Seçiniz</option>
+    {% for row in assistants %} 
+    <option value="{{row.username}}">{{row.fname}} {{row.lname}}</option>
+    {% endfor %}
+</select>

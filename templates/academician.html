@@ -31,6 +31,68 @@
             }, 5000);
         }
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#academician-but-1').click(function(e) {
+                e.preventDefault();
+                $.post("/get_lectures_of_academician", function(response) {
+                    $('#lectures_table_out').html(response);
+                    $('#lectures_table_out').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#academician-but-2').click(function(e) {
+                e.preventDefault();
+                $.post("/get_lecturenames_of_academician", function(response) {
+                    $('#lectures-names-out').html(response);
+                    $('#lectures-names-out').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#get-students-button').click(function(e) {
+                e.preventDefault();
+                $.post("/get_students_of_lecture", {
+                    lecture: $('#lectures-names').val(),
+                }, function(response) {
+                    $('#students-of-lecture-out').html(response);
+                    $('#students-of-lecture-out').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#academician-but-3').click(function(e) {
+                e.preventDefault();
+                $.post("/get_lecturenames_of_academician_2", function(response) {
+                    $('#lectures-names-out-2').html(response);
+                    $('#lectures-names-out-2').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#academician-but-3').click(function(e) {
+                e.preventDefault();
+                $.post("/get_potential_assistants", function(response) {
+                    $('#assistants-names-out-2').html(response);
+                    $('#assistants-names-out-2').append(response.htmlresponse);
+                });
+                return false;
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -64,9 +126,9 @@
                 <p id="message">Hoşgeldiniz {{ username | safe }}</p>
                 {% endif %}
             </div>
-            <button class="process-button" onclick="lecturesActive()">Derslerim <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
-            <button class="process-button" onclick="studentsActive()">Öğrenciler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
-            <button class="process-button" onclick="assistantApprovementActive()">Asistan Atama <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
+            <button class="process-button" id="academician-but-1" onclick="lecturesActive()">Derslerim <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
+            <button class="process-button" id="academician-but-2" onclick="studentsActive()">Öğrenciler <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
+            <button class="process-button" id="academician-but-3" onclick="assistantApprovementActive()">Asistan Atama <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
             <button class="process-button" onclick="approvementsActive()">Ders Onayı <i class="fa fa-angle-double-right" style="font-size: 25px;"></i></button>
         </div>
         {% block content %}
@@ -81,133 +143,34 @@
         <div class="col-10" id="academician-lectures">
             <div class="container mt-3" id="academician-lecture-table">
                 <div class="row">
-                    <div class="col-12">
-                        <table>
-                            <tr class="attributes">
-                                <th>Ders Kodu</th>
-                                <th>Bölüm Kodu</th>
-                                <th>Asistan</th>
-                                <th>Kredi</th>
-                                <th>Kontenjan</th>
-                                <th>Ders Saatleri</th>
-                            </tr>
-                            <tr>
-                                <td class="data">Alfreds Futterkiste</td>
-                                <td class="data">Maria Anders</td>
-                                <td class="data">Germany</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Centro comercial Moctezuma</td>
-                                <td class="data">Francisco Chang</td>
-                                <td class="data">Mexico</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Ernst Handel</td>
-                                <td class="data">Roland Mendel</td>
-                                <td class="data">Austria</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Island Trading</td>
-                                <td class="data">Helen Bennett</td>
-                                <td class="data">UK</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Laughing Bacchus Winecellars</td>
-                                <td class="data">Yoshi Tannamuri</td>
-                                <td class="data">Canada</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Magazzini Alimentari Riuniti</td>
-                                <td class="data">Giovanni Rovelli</td>
-                                <td class="data">Italy</td>
-                            </tr>
-                        </table>
+                    <div class="col-12" id="lectures_table_out">
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-10 mt-3" id="academician-students">
-            <form action="./akademisyen öğrencilerini getirme endpointi" method="get">
-                <div class="row">
-                    <div class="col-12 d-flex">
-                        <label id="lecture-label" class="ml-5">Ders:</label>
-                        <select name="lectures" id="myLectures" class="lecture-select ml-3">
-                            <option value="l1">Bil 211</option>
-                            <option value="l2">Bil 212</option>
-                        </select>
-                        <button class="btn btn-primary ml-5" type="submit" id="get-students-button" onclick="studentsTableActive()">Görüntüle</button>
-                    </div>
+            <div class="row">
+                <div class="col-12 d-flex" id="lectures-names-out">
                 </div>
-            </form>
+                <div class="col-12 d-flex justify-content-end mt-3">
+                    <button class="btn btn-primary" type="submit" id="get-students-button" onclick="studentsTableActive()">Görüntüle</button>
+                </div>
+            </div>
             <div class="container mt-3" id="academician-student-table">
                 <div class="row">
-                    <div class="col-12">
-                        <table>
-                            <tr class="attributes">
-                                <th>Kullanıcı Adı</th>
-                                <th>İsim</th>
-                                <th>2. İsim</th>
-                                <th>Soyisim</th>
-                                <th>Öğrenci Numarası</th>
-                                <th>Bölüm</th>
-                                <th>Sınıf</th>
-                                <th>Yaş</th>
-                                <th>Telefon Numarası</th>
-                            </tr>
-                            <tr>
-                                <td class="data">Alfreds Futterkiste</td>
-                                <td class="data">Maria Anders</td>
-                                <td class="data">Germany</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Centro comercial Moctezuma</td>
-                                <td class="data">Francisco Chang</td>
-                                <td class="data">Mexico</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Ernst Handel</td>
-                                <td class="data">Roland Mendel</td>
-                                <td class="data">Austria</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Island Trading</td>
-                                <td class="data">Helen Bennett</td>
-                                <td class="data">UK</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Laughing Bacchus Winecellars</td>
-                                <td class="data">Yoshi Tannamuri</td>
-                                <td class="data">Canada</td>
-                            </tr>
-                            <tr>
-                                <td class="data">Magazzini Alimentari Riuniti</td>
-                                <td class="data">Giovanni Rovelli</td>
-                                <td class="data">Italy</td>
-                            </tr>
-                        </table>
+                    <div class="col-12" id="students-of-lecture-out">
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-10 mt-3" id="academician-assistants">
-            <form action="./asistan-atama-endpointi" method="post">
+            <form id="setassistant" action="./set_assistant" method="post">
                 <div class="row">
                     <div class="col-12 d-flex">
                         <div class="row">
-                            <div class="col-12 d-flex align-items-center justify-content-start">
-                                <label id="lecture-label" class="ml-5" style="margin-right: 30px;">Ders:</label>
-                                <select name="academician-lectures-values" id="academician-lectures-values" class="lecture-select ml-3" style="width: 60%;">
-                                    <option value="l1">Bil 211</option>
-                                    <option value="l2">Bil 212</option>
-                                </select>
+                            <div class="col-12 d-flex align-items-center justify-content-start" id="lectures-names-out-2">
                             </div>
-                            <div class="col-12 mt-3 d-flex align-items-center justify-content-start">
-                                <label id="lecture-label" class="ml-5">Asistan:</label>
-                                <select name="assistants" id="assistants" class="lecture-select ml-3" style="width: 60%;">
-                                    <option value="l1">Benan Bardakcım</option>
-                                    <option value="l2">İzzet Barış</option>
-                                    <option value="l3">Utku Umur</option>
-                                </select>
+                            <div class="col-12 mt-3 d-flex align-items-center justify-content-start" id="assistants-names-out-2">
                             </div>
                         </div>
                     </div>

@@ -35,12 +35,12 @@ CREATE TABLE "ADMIN" (
 
 CREATE TABLE "DEPARTMENT" (
 	DepCode varchar(3) NOT NULL,
-	Head varchar(10) UNIQUE,
+	Head varchar(10),
 	CreditLimit int NOT NULL,
 	PRIMARY KEY (DepCode)
 );
 
-CREATE TYPE validDegreesA AS ENUM ('research', 'associate', 'professor');
+CREATE TYPE validDegreesA AS ENUM ('Araştırma Görevlisi', 'Doçent', 'Profesör');
 CREATE TABLE "ACADEMICIAN" (
 	A_Username varchar(10) NOT NULL,
 	A_DepCode varchar(3) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE "ACADEMICIAN" (
 	PRIMARY KEY (A_Username)
 );
 
-CREATE TYPE validDegreesS AS ENUM ('bachelor', 'master', 'phd');
+CREATE TYPE validDegreesS AS ENUM ('Lisans', 'Yüksek Lisans', 'Doktora');
 CREATE TABLE "STUDENT" (
 	S_Username varchar(10) NOT NULL,
 	S_DepCode varchar(3) NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE "LECTURE" (
 	LectureCode int NOT NULL,
 	L_DepCode varchar(3) NOT NULL,
 	Lecturer varchar(10) NOT NULL,
-	Assistant varchar(10) UNIQUE,
+	Assistant varchar(10),
 	Credit int NOT NULL,
 	Quota int NOT NULL,
 	FOREIGN KEY (L_DepCode) References "DEPARTMENT"(DepCode),

@@ -1,0 +1,16 @@
+<table id="lecture_table">
+    <tr class="attributes">
+        <th>Ders</th>
+        <th>Kredi</th>
+        <th>Kontenjan</th>
+        <th>Asistan</th>
+    </tr>
+    {% for row in lectures %} 
+    <tr>
+        <td class="data">{{row.l_depcode}}{{row.lecturecode}}</td>
+        <td class="data">{{row.credit}}</td>
+        <td class="data">{{row.quota}}</td>
+        <td class="data">{{row.assistant}}</td>
+    </tr>
+    {% endfor %}
+</table>

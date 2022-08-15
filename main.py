@@ -1,14 +1,12 @@
-from asyncio.windows_events import NULL
 from lib2to3.pytree import Base
 from flask import Flask, render_template, request, jsonify, flash
 import psycopg2
 import psycopg2.extras
-import time
 
 app = Flask(__name__)
 app.secret_key = 'random string'
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='Mert_201')
+    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='fatih1')
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     return conn, cur
 
@@ -126,6 +124,65 @@ def get_lectures_of_student():
         conn.close()
         return jsonify({'htmlresponse': render_template('api_lec_of_student_table.html', lectures=query)})
 
+@app.route("/get_lectures_of_academician",methods=["POST","GET"])
+def get_lectures_of_academician():
+    if request.method == 'POST':
+        user = active_username
+        conn, cur = get_db_connection()
+        cur.execute('SELECT * FROM "LECTURE" WHERE Lecturer=%s', [user])
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify({'htmlresponse': render_template('api_lec_of_academician.html', lectures=query)})
+
+@app.route("/get_lecturenames_of_academician",methods=["POST","GET"])
+def get_lecturenames_of_academician():
+    if request.method == 'POST':
+        user = active_username
+        conn, cur = get_db_connection()
+        cur.execute('SELECT * FROM "LECTURE" WHERE Lecturer=%s', [user])
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify({'htmlresponse': render_template('api_lec_of_academician_form.html', lectures=query)})
+
+@app.route("/get_potential_assistants",methods=["POST","GET"])
+def get_potential_assistants():
+    if request.method == 'POST':
+        user = active_username
+        conn, cur = get_db_connection()
+        cur.execute('SELECT * FROM "STUDENT" AS S, "USER" AS U WHERE S.S_Username=U.Username AND (S."S_Degree"=%s OR S."S_Degree"=%s)', ("Yüksek Lisans", "Doktora"))
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        print(query)
+        return jsonify({'htmlresponse': render_template('api_potential_assistants.html', assistants=query)})
+
+@app.route("/get_lecturenames_of_academician_2",methods=["POST","GET"])
+def get_lecturenames_of_academician_2():
+    if request.method == 'POST':
+        user = active_username
+        conn, cur = get_db_connection()
+        cur.execute('SELECT * FROM "LECTURE" WHERE Lecturer=%s', [user])
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify({'htmlresponse': render_template('api_lec_of_academician_form.html', lectures=query)})
+
+@app.route("/get_students_of_lecture",methods=["POST","GET"])
+def get_students_of_lecture():
+    if request.method == 'POST':
+        lecture = request.form.get("lecture")
+        depcode = lecture[0:3]
+        leccode = lecture[3:]
+        conn, cur = get_db_connection()
+        cur.execute('SELECT * FROM "STUDENT_LECTURES" AS SL, "STUDENT" AS S, "USER" AS U WHERE SL.SL_DepCode=%s '
+                    'AND SL.SL_LectureCode=%s AND S.S_Username=SL.SL_Username AND U.Username=S.S_Username', (depcode, leccode))
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify({'htmlresponse': render_template('api_students_of_lecture.html', students=query)})
+
 @app.route("/get_lectures_can_be_choice",methods=["POST","GET"])
 def get_lectures_can_be_choice():
     if request.method == 'POST':
@@ -228,6 +285,26 @@ def create_lecture():
             flash('Ders başarıyla oluşturuldu!')
         finally:
             return render_template('admin.html', username=active_username)
+
+@app.route("/set_assistant",methods=["POST","GET"])
+def set_assistant():
+    if request.method == 'POST':
+        lecture = request.form.get("lectures-names")
+        assistant = request.form.get("assistant-names")
+        depcode = lecture[0:3]
+        leccode = lecture[3:]
+        try:
+            conn, cur = get_db_connection()
+            cur.execute('UPDATE "LECTURE" SET Assistant=%s WHERE L_Depcode=%s AND LectureCode=%s', (assistant, depcode, leccode))
+            conn.commit()
+            cur.close()
+            conn.close()
+        except BaseException as e:
+            flash('Asistan atanamadı! --> ' + str(e))
+        else:
+            flash('Asistan başarıyla atandı!')
+        finally:
+            return render_template('academician.html', username=active_username)
 
 if __name__ == '__main__':
     app.run()
