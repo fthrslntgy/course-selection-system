@@ -87,36 +87,30 @@ function closePopUp(choice) {
     }
 }
 
-function validationUsername(value){
+function validationUsername(value) {
     var valueRegex = /^[a-zA-Z0-9]{4,}$/;
     return valueRegex.test(value);
 }
 
-function validationName(value){
+function validationName(value) {
     var valueRegex = /^[a-zA-Z]{2,}$/;
     return valueRegex.test(value);
 }
 
-function createAcademician(){
+function createAcademician() {
 
     const username = document.getElementById("a_username").value;
     const fname = document.getElementById("a_fname").value;
     const lname = document.getElementById("a_lname").value;
     const depcode = document.getElementById("dep-codes").value;
 
-    if(!validationUsername(username)){
+    if (!validationUsername(username)) {
         alert("Lütfen kullanıcı adını minimum 4 karakter ve alfanümerik olarak veriniz!");
-    }
-
-    else if(!validationName(fname) || !validationName(lname)){
+    } else if (!validationName(fname) || !validationName(lname)) {
         alert("Lütfen adı ve soyadı minimum 2 harften oluşacak şekilde ve yalnızca harflerden oluşacak şekilde veriniz!");
-    }
-
-    else if(depcode == "Seçiniz"){
+    } else if (depcode == "Seçiniz") {
         alert("Lütfen bölüm seçiniz");
-    }
-
-    else{
+    } else {
         document.getElementById("academician-inputs").submit();
     }
 }
@@ -126,7 +120,7 @@ function validationStudentNumber(value) {
     return valueRegex.test(value);
 }
 
-function createStudent(){
+function createStudent() {
 
     const username = document.getElementById("s_username").value;
     const fname = document.getElementById("s_fname").value;
@@ -134,28 +128,18 @@ function createStudent(){
     const lname = document.getElementById("s_lname").value;
     const studentnumber = document.getElementById("s_number").value
     const depcode = document.getElementById("dep-codes").value;
-    
-    if(!validationUsername(username)){
+
+    if (!validationUsername(username)) {
         alert("Lütfen kullanıcı adını minimum 4 karakter ve alfanümerik olarak veriniz!");
-    }
-
-    else if(!validationName(fname) || !validationName(lname)){
+    } else if (!validationName(fname) || !validationName(lname)) {
         alert("Lütfen adı ve soyadı minimum 2 harften oluşacak şekilde ve yalnızca harflerden oluşacak şekilde veriniz!");
-    }
-
-    else if(!validationStudentNumber(studentnumber)){
+    } else if (!validationStudentNumber(studentnumber)) {
         alert("Lütfen öğrenci numarasını 0'la başlamayacak şekilde 9 haneli olarak veriniz!");
-    }
-
-    else if(depcode == "Seçiniz"){
+    } else if (depcode == "Seçiniz") {
         alert("Lütfen bölüm seçiniz");
-    }
-
-    else if(advicer == "Seçiniz" || advicer == "Önce Bölüm Seçiniz"){
+    } else if (advicer == "Seçiniz" || advicer == "Önce Bölüm Seçiniz") {
         alert("Lütfen akademisyen seçiniz");
-    }
-
-    else{
+    } else {
         document.getElementById("student-inputs").submit();
     }
 }
@@ -179,31 +163,21 @@ function createLecture() {
 
     const depcode = document.getElementById("dep-codes").value;
     const lecturecode = document.getElementById("l_lecturecode").value;
-    const lecturer = document.getElementById("academician-names").value;
+    const lecturer = document.getElementById("academician-names-2").value;
     const quota = document.getElementById("l_quota").value;
     const credit = document.getElementById("l_credit").value;
 
-    if(!validationCode(lecturecode)){
+    if (!validationCode(lecturecode)) {
         alert("Lütfen ders kodunu 100-499 arası sayılardan veriniz!");
-    }
-
-    else if(!validationCredit(credit)){
+    } else if (!validationCredit(credit)) {
         alert("Lütfen ders kredisini 1-4 arası sayılardan veriniz!");
-    }
-
-    else if(!validationQuota(quota)){
+    } else if (!validationQuota(quota)) {
         alert("Lütfen ders kontjanını 10-99 arası sayılardan veriniz!");
-    }
-
-    else if(depcode == "Seçiniz"){
+    } else if (depcode == "Seçiniz") {
         alert("Lütfen bölüm seçiniz");
-    }
-
-    else if(lecturer == "Seçiniz" || lecturer == "Önce Bölüm Seçiniz"){
+    } else if (lecturer == "Seçiniz" || lecturer == "Önce Bölüm Seçiniz") {
         alert("Lütfen akademisyen seçiniz");
-    }
-
-    else{
+    } else {
         document.getElementById("lecture-inputs").submit();
     }
 }

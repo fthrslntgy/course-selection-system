@@ -6,7 +6,7 @@ import psycopg2.extras
 app = Flask(__name__)
 app.secret_key = 'random string'
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='fatih1')
+    conn = psycopg2.connect(host='localhost', database='dss', user='postgres', password='Mert_201')
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     return conn, cur
 
@@ -49,7 +49,7 @@ def Login():
                 minit = query['minit']
                 lname = query['lname']
                 name = ""
-                if (minit == "-"):
+                if (minit == "-" or minit is None):
                     name = fname + " " + lname
                 else:
                     name = fname + " " + minit + " " + lname
@@ -216,6 +216,17 @@ def get_academicians_with_depcode():
         conn.close()
         return jsonify({'htmlresponse': render_template('api_academicians_form.html', academicians=query)})
 
+@app.route("/get_academicians_with_depcode_2",methods=["POST","GET"])
+def get_academicians_with_depcode_2():
+    if request.method == 'POST':
+        depcode = request.form.get("depcode")
+        conn, cur = get_db_connection()
+        cur.execute('SELECT * FROM "ACADEMICIAN" as A, "USER" as U WHERE A.a_depcode=%s AND A.a_username=U.username', [depcode])
+        query = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify({'htmlresponse': render_template('api_academicians_form_2.html', academicians=query)})
+
 @app.route("/create_academician",methods=["POST","GET"])
 def create_academician():
     if request.method == 'POST':
@@ -267,11 +278,11 @@ def create_student():
 def create_lecture():
     if request.method == 'POST':
         depcode = request.form.get("dep-codes")
-        lecturecode = request.form.get("lecturecode")
-        lecturer = request.form.get("academician-names")
-        quota = request.form.get("quota")
+        lecturecode = request.form.get("l_lecturecode")
+        lecturer = request.form.get("academician-names-2")
+        quota = request.form.get("l_quota")
         quota = int(quota)
-        credit = request.form.get("credit")
+        credit = request.form.get("l_credit")
         credit = int(credit)
         try:
             conn, cur = get_db_connection()

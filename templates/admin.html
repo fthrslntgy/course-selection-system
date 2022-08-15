@@ -120,7 +120,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#show-dep-codes-l').change(function() {
-                $.post("/get_academicians_with_depcode", {
+                $.post("/get_academicians_with_depcode_2", {
                     depcode: $('#dep-codes').val(),
                 }, function(response) {
                     $('#show-academician-names-l').html(response);
@@ -320,10 +320,6 @@
                             <input type="text" placeholder="4" id="l_credit" name="l_credit">
                         </div>
                         <div class="col-4 d-flex flex-column justify-content-start form-input" id="show-academician-names-l">
-                            <label>Akademisyen</label>
-                            <select name="academician-names" id="academician-names" class="form-control" style="width: 80%;">
-                                <option value="Önce Bölüm Seçiniz" selected="selected">Önce Bölüm Seçiniz</option>
-                            </select>
                         </div>
                         <div class="col-4 d-flex flex-column align-items-center justify-content-start form-input">
                             <label>Kontenjan</label>

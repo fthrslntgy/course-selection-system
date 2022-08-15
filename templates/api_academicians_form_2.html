@@ -1,0 +1,7 @@
+<label>Akademisyen</label>
+<select name="academician-names-2" id="academician-names-2" class="form-control" style="width: 80%;">
+    <option value="Seçiniz" selected="selected">Seçiniz</option>
+    {% for row in academicians %} 
+    <option value="{{row.username}}">{{row.fname}} {{row.lname}}</option>
+    {% endfor %}
+</select>
